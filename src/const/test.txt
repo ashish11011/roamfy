@@ -1,0 +1,84 @@
+  async function handleImageUploadToS3() {
+    if (imageAdded) {
+      return;
+    }
+    let imageLinks: any = [];
+    function getImageName(url: string) {
+      // Split the URL by slashes and take the last part
+      const parts = url.split('/');
+      const lastPart = parts[parts.length - 1];
+      // Remove query parameters if they exist
+      const imageName = lastPart.split('?')[0];
+      return `https://s3.ap-south-1.amazonaws.com/cozzy.corner/allProducts/${imageName}`;
+    }
+
+    const response = await fetch('/api/getImageUploadUrl', {
+      method: 'POST',
+      body: JSON.stringify({
+        count: images.length,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+
+      for (let i = 0; i < images.length; i++) {
+        const responst = await fetch(data[i], {
+          method: 'PUT',
+          body: images[i],
+          headers: {
+            'Content-Type': 'image/jpeg',
+          },
+        });
+        const imageS3Link = getImageName(data[i]);
+        imageLinks.push(imageS3Link);
+      }
+    } else {
+      console.error('Error submitting form:', response.statusText);
+    }
+    setFormData({ ...formData, images: imageLinks });
+    setImageAdded(true);
+  }
+
+
+
+
+
+
+
+  Includes
+
+this the the includes of this trip
+
+
+
+Excludes
+
+this is the excludes of the trip
+
+
+
+and this is the point of the tirp
+
+
+
+
+
+
+
+point number one
+
+
+
+point number two
+
+
+
+point number three
+
+
+
+and this is the last point number four
