@@ -1,13 +1,13 @@
 import BlogCard from "@/conponents/blogCard";
 import HeroBG from "@/conponents/tripHero";
 import dayjs from "dayjs";
-// import { getBlogData } from "lib";
+import { getAdminBlogData } from "lib";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 const Page = async () => {
-  // const blogsData = await getBlogData();
+  const blogsData = await getAdminBlogData();
   return (
     <div>
       <HeroBG text="Blog" img={"./blog-bg.jpg"} />
@@ -22,7 +22,7 @@ const Page = async () => {
           landmarks.
         </p>
       </div>
-      {/* <Blogs blogsData={blogsData} /> */}
+      <Blogs blogsData={blogsData} />
     </div>
   );
 };

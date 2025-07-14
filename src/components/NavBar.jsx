@@ -13,7 +13,7 @@ export function Navbar() {
     { label: "Packages", href: "/#package" },
     { label: "Blogs", href: "/blog" },
     { label: "Add Review", href: "/add-review" },
-    // { label: "Contact", href: "/contact" },
+    { label: "About Us", href: "/about-us" },
   ];
 
   return (
