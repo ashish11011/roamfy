@@ -18,6 +18,8 @@ const Page = async ({ params, searchParams }) => {
   } else {
     return <RedirectHome title="Trip not found" />;
   }
+
+  console.log(tripData);
   return (
     <div className=" text-gray-900 tracking-wide leading-7 w-full space-y-16">
       <HeroBG text={tripData?.title} />

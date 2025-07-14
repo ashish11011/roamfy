@@ -7,7 +7,7 @@ export function TravelPlan({ itinary }) {
       <Heading>Itinerary</Heading>
       <p className=" text-gray-600">{itinary.description}</p>
       <div className=" space-y-2 pt-4">
-        {itinary.itinary.map((item, idx) => {
+        {itinary?.itinary?.map((item, idx) => {
           const isLast = idx === itinary.itinary.length - 1;
           return (
             <TripCard
