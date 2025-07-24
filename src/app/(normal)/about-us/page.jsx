@@ -15,14 +15,15 @@ export default function AboutUsSection() {
         <div>
           <p className="text-sm text-gray-500 mb-2">About Us</p>
           <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight">
-            Travel Experts Crafting <br /> Unique Experiences
+            Curating Memorable Trips <br /> Across India & Beyond
           </h2>
           <p className="mt-6 text-lg text-gray-600 max-w-xl">
-            Step into a world of unforgettable adventures with Travlo. Whether
-            you're seeking serene beaches, vibrant cities, or hidden gems, we
-            make every journey seamless and extraordinary. Your dream
-            destination is just a click away!
+            At Roamify Planners, we specialize in crafting unforgettable group
+            tours for colleges, schools, corporates, and honeymooners. From
+            transport and hotels to sightseeing and special events—we take care
+            of everything so you can just pack and go!
           </p>
+
           <Link
             href={"/contact-us"}
             className="mt-8 inline-flex items-center px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition"

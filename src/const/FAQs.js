@@ -1,52 +1,52 @@
 export const FAQsData = [
   {
-    question: "What types of corporate travel plans do you offer?",
+    question: "What types of trips do you organize?",
     answer:
-      "We offer a wide range of customizable travel plans for corporate needs including conferences, team-building retreats, incentive travel, leadership off-sites, and client entertainment trips. Whether you're planning a high-energy adventure or a relaxing getaway, our packages are designed to align with your company’s objectives, values, and budget. We also handle logistics such as flights, stays, meals, and local experiences to deliver a hassle-free experience.",
+      "We plan a wide variety of trips including school excursions, college tours, corporate outings, and honeymoon packages. Whether it's a fun student trip or a premium corporate retreat, we ensure a seamless and memorable experience.",
   },
   {
-    question: "Can we customize our corporate travel package?",
+    question: "Is everything included in the package?",
     answer:
-      "Absolutely! Our travel consultants work closely with you to understand your team’s preferences and requirements. You can personalize every aspect—from destination and accommodation type to activities, transport mode, and dining preferences. We also offer add-ons like branded merchandise, wellness sessions, and professional photographers to make your trip truly unique.",
+      "Yes! All our packages include end-to-end arrangements—transport (bus, train, or flight), hotel stay, meals, sightseeing tickets, and activities. We even provide a dedicated tour manager so you don’t have to worry about anything.",
   },
   {
-    question: "How do I request a quote for a corporate trip?",
+    question: "Can we customize the trip as per our needs?",
     answer:
-      "Requesting a quote is easy. Simply fill out the inquiry form on our homepage with basic trip details like group size, destination preferences, travel dates, and special requests. Alternatively, you can contact our travel specialists via phone or email. Once we receive your request, we’ll send you a detailed proposal within 24 hours, including cost estimates, itinerary options, and package inclusions.",
+      "Absolutely! We offer fully customizable packages. You can choose destinations, stay preferences, meal plans, sightseeing options, and even request add-ons like DJ nights, bonfires, or conferences.",
   },
   {
-    question: "Are travel and accommodation included in the plans?",
+    question: "Do you provide a tour manager or coordinator during the trip?",
     answer:
-      "Yes, all our corporate travel packages include end-to-end arrangements such as round-trip transportation (flights, buses, or private vehicles), quality accommodations, daily meals, and curated activities. You also have the flexibility to upgrade to premium services, book private venues, or arrange for special experiences like guided tours, gala dinners, or team workshops.",
+      "Yes, every group gets a dedicated travel manager who handles everything during the journey—right from arrival to departure. They ensure the entire trip is well-organized and stress-free.",
   },
   {
-    question: "Do you offer international corporate trips?",
+    question: "How early should we book a trip?",
     answer:
-      "Yes, we organize both domestic and international corporate trips to a wide range of destinations including Southeast Asia, Europe, the Middle East, and more. Our international packages cover visa assistance, currency guidance, local transportation, travel insurance, and multilingual support to ensure a seamless experience across borders.",
+      "We recommend booking at least 4–6 weeks in advance to get the best rates and availability. For peak seasons or large groups, booking earlier ensures smoother planning and better customization.",
   },
   {
-    question: "How early should we book a corporate trip?",
+    question: "Do you provide any benefits for school/college trips?",
     answer:
-      "We recommend booking your corporate trip at least 4–6 weeks in advance to secure the best rates and availability—especially during peak travel seasons. For international or large-group travel, earlier planning (8–10 weeks ahead) allows us to better coordinate logistics, personalize experiences, and avoid last-minute surcharges or limitations.",
+      "Yes, we offer complimentary seats for teachers (1 per 15 students), and ensure trips are safe, educational, and well-supervised. We also handle permissions, transport logistics, meals, and sightseeing.",
   },
   {
-    question: "Is there a minimum group size required for a corporate trip?",
+    question: "What are your prime destinations?",
     answer:
-      "Typically, our corporate travel packages are designed for groups of 10 or more. However, we understand the need for smaller team retreats or executive off-sites, and we’re happy to create tailored experiences for smaller groups upon request, with equally high attention to detail and service.",
+      "Our most popular destinations include Goa, Manali, Jaisalmer, Jim Corbett, Udaipur, and McLeod Ganj. Each location is curated for a mix of comfort, adventure, and unforgettable memories.",
   },
   {
-    question: "Can you handle last-minute changes or cancellations?",
+    question: "Can you arrange special activities like DJ nights or bonfires?",
     answer:
-      "We understand that plans can change unexpectedly. Our flexible rescheduling and cancellation policies are designed to support you in such situations. Depending on the vendor and destination, we’ll do our best to accommodate last-minute updates to the itinerary or assist with refunds, credits, or rebooking options as per the terms shared in your package agreement.",
+      "Yes! We offer DJ nights, bonfires, gala dinners, pool parties, and more based on your group’s preferences. These can be added to any package upon request.",
   },
   {
-    question: "Do you provide on-ground support during the trip?",
+    question: "Do you organize international trips?",
     answer:
-      "Yes, we assign dedicated trip coordinators or local representatives who are available throughout your journey to manage logistics, handle queries, and ensure everything runs smoothly. From airport pickups to activity coordination, our on-ground team ensures you have a stress-free and enjoyable travel experience.",
+      "Currently, we specialize in domestic travel across India. For international trip inquiries, feel free to reach out—we may be able to assist via partner networks.",
   },
   {
-    question: "How can we contact you for further assistance?",
+    question: "How can we get in touch with Roamify Planners?",
     answer:
-      "You can reach out to us anytime through the contact form on our website, call our support number listed in the footer, or email us at support@[yourdomain].com. Our travel specialists are available Monday to Saturday, 10 AM to 7 PM IST, and respond promptly to inquiries, quotes, or custom requests.",
+      "You can reach us at roamifyplanners@gmail.com, call us at +91 8239002370, or visit our website www.roamifyplanners.odoo.com. We're happy to assist you with planning your next trip!",
   },
 ];

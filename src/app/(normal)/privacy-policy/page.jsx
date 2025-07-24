@@ -1,4 +1,5 @@
 import HeroBG from "@/conponents/tripHero";
+import Link from "next/link";
 import React from "react";
 
 const Page = () => {
@@ -18,65 +19,85 @@ function PrivacyPolicy() {
       <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
 
       <p className="mb-4">
-        At [Your Company Name], we value your privacy and are committed to
-        protecting your personal data. This Privacy Policy outlines how we
-        collect, use, and safeguard your information when you use our website.
+        At <strong>Roamify Planners</strong>, your privacy is important to us.
+        This Privacy Policy explains how we collect, use, and safeguard your
+        personal information when you interact with us—whether through our
+        website, email, phone, or during your trip planning journey.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">
         1. Information We Collect
       </h2>
       <p className="mb-4">
-        We may collect personal information such as your name, email address,
-        phone number, and travel preferences when you fill out forms on our site
-        or contact us.
+        We may collect personal details such as your name, contact number, email
+        address, travel preferences, and trip-specific requirements when you
+        submit a query or request a quote.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">
         2. How We Use Your Information
       </h2>
       <ul className="list-disc list-inside mb-4 space-y-1">
-        <li>To provide travel recommendations and customer service</li>
-        <li>To send booking confirmations and important updates</li>
-        <li>To improve our website and services</li>
+        <li>To create personalized travel packages for your group</li>
+        <li>
+          To contact you with trip updates, quotes, or booking confirmations
+        </li>
+        <li>To respond to your inquiries or support requests</li>
+        <li>To improve our offerings based on user feedback</li>
       </ul>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">
         3. Sharing of Information
       </h2>
       <p className="mb-4">
-        We do not sell, trade, or rent your personal information to others. We
-        may share your information with trusted third-party partners who assist
-        us in operating our site and services, as long as they agree to keep
-        this information confidential.
+        We do not sell or rent your personal information. We may share your data
+        with trusted partners (like hotels, travel vendors, or transport
+        services) only as needed to facilitate your trip. These partners are
+        required to maintain confidentiality.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">4. Data Security</h2>
       <p className="mb-4">
-        We implement a variety of security measures to maintain the safety of
-        your personal information. However, no method of transmission over the
-        Internet is 100% secure.
+        We use reasonable technical and administrative measures to protect your
+        data. However, no method of transmission or electronic storage is
+        completely secure.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">5. Your Rights</h2>
       <p className="mb-4">
-        You may request access, correction, or deletion of your personal data by
-        contacting us at [support@email.com].
+        You can request access to your personal data, ask us to correct any
+        inaccuracies, or request deletion by contacting us at{" "}
+        <strong>roamifyplanners@gmail.com</strong>.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">
         6. Changes to This Policy
       </h2>
       <p className="mb-4">
-        We may update this Privacy Policy from time to time. Any changes will be
-        posted on this page with an updated revision date.
+        We may update this Privacy Policy as our services evolve. Changes will
+        be reflected on this page with the updated effective date.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">7. Contact Us</h2>
       <p>
-        If you have any questions regarding this policy, you can contact us at:
+        If you have questions about this policy or how we use your information,
+        feel free to contact us:
         <br />
-        📧 <span className="font-medium">support@yourcompany.com</span>
+        📧 <span className="font-medium">roamifyplanners@gmail.com</span>
+        <br />
+        📞 <span className="font-medium">+91 8239002370</span>
+        <br />
+        🌐{" "}
+        <span className="font-medium">
+          <Link
+            href="https://www.roamifyplanners.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-emerald-600 underline"
+          >
+            www.roamifyplanners.com
+          </Link>
+        </span>
       </p>
     </div>
   );

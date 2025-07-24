@@ -41,8 +41,12 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row flex-wrap justify-between gap-6 md:gap-8 pb-10">
           <div className=" md:text-lg">
             <h3 className="font-semibold mb-3 md:mb-6 text-2xl">Address</h3>
-            <p>123 Main Street</p>
-            <p>New York, NY 10001</p>
+            <p>
+              ASKG Residency
+              <br />
+              Vidhansahbha nagar,
+              <br /> Jaipur, 302020
+            </p>
           </div>
 
           <div className=" md:text-lg">
@@ -55,8 +59,8 @@ const Footer = () => {
               </li>
 
               <li>
-                <Link href="/trip" className="hover:underline">
-                  trip page
+                <Link href="/about-us" className="hover:underline">
+                  About Us
                 </Link>
               </li>
               <li>
@@ -67,13 +71,17 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className=" md:text-lg">
+          <div className=" flex flex-col gap-4 md:text-lg">
             <Link href={"/contact-us"} className="font-semibold  text-2xl">
               Contact Us
             </Link>
 
-            <p className=" mt-3 md:mt-6">+1 500 321 852 789</p>
-            <p>+1 500 321 852 789</p>
+            <Link href={"tel:+918239002370"} className="">
+              +91 8239002370
+            </Link>
+            <Link href={"mailto:roamifyplanners@gmail.com"}>
+              roamifyplanners@gmail.com
+            </Link>
           </div>
 
           <div className=" md:text-lg">

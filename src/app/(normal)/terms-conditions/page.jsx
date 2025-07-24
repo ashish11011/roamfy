@@ -19,94 +19,108 @@ function TermsAndConditions() {
       <h1 className="text-3xl font-bold mb-6">Terms and Conditions</h1>
 
       <p className="mb-4">
-        By accessing and using our website, you agree to comply with and be
-        bound by the following terms and conditions. Please read them carefully
-        before using our services.
+        Welcome to Roamify Planners. By accessing or using our services, you
+        agree to comply with the terms and conditions outlined below. Please
+        read them carefully before proceeding with any bookings or queries.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">
-        1. Acceptance of Terms
+        1. Booking Confirmation
       </h2>
       <p className="mb-4">
-        By using this website, you agree to be bound by these Terms and all
-        applicable laws and regulations. If you do not agree with any of these
-        terms, you are prohibited from using or accessing this site.
+        All bookings are subject to availability and will only be confirmed upon
+        receipt of the advance payment. The final itinerary will be shared after
+        the booking is confirmed.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">2. Use License</h2>
+      <h2 className="text-xl font-semibold mt-6 mb-2">2. Payments</h2>
       <p className="mb-4">
-        Permission is granted to temporarily download one copy of the materials
-        on our website for personal, non-commercial transitory viewing only.
-        This is the grant of a license, not a transfer of title.
+        Payment must be made in the manner and schedule communicated during the
+        booking. Any delay in payment may result in cancellation or change in
+        pricing.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">3. User Conduct</h2>
+      <h2 className="text-xl font-semibold mt-6 mb-2">
+        3. Cancellations & Refunds
+      </h2>
+      <p className="mb-4">
+        Cancellation charges will apply based on when the cancellation is made
+        prior to the departure date. No refunds will be issued for last-minute
+        cancellations or no-shows.
+      </p>
+
+      <h2 className="text-xl font-semibold mt-6 mb-2">
+        4. Changes to Itinerary
+      </h2>
+      <p className="mb-4">
+        Roamify Planners reserves the right to modify the itinerary due to
+        unavoidable circumstances such as weather, strikes, or third-party
+        delays. We will inform you of such changes as early as possible.
+      </p>
+
+      <h2 className="text-xl font-semibold mt-6 mb-2">5. Responsibility</h2>
+      <p className="mb-4">
+        While we ensure smooth operations, we are not responsible for delays or
+        damages caused by transport providers, hotel staff, or external agencies
+        involved in the tour. We act solely as a coordinator.
+      </p>
+
+      <h2 className="text-xl font-semibold mt-6 mb-2">6. Travel Documents</h2>
+      <p className="mb-4">
+        It is the responsibility of the travelers to carry valid ID proofs,
+        permits, and any required documents during the trip. We are not liable
+        for entry denial by any authority due to missing documents.
+      </p>
+
+      <h2 className="text-xl font-semibold mt-6 mb-2">7. Code of Conduct</h2>
       <ul className="list-disc list-inside mb-4 space-y-1">
         <li>
-          You agree not to misuse our services or interfere with their normal
-          operation.
+          Participants are expected to maintain decorum and respect local
+          culture.
         </li>
         <li>
-          You agree not to attempt unauthorized access to any part of our
-          website.
+          Any damage to property during the trip will be the sole responsibility
+          of the individual/group.
         </li>
         <li>
-          You may not use the site to distribute spam, malware, or other harmful
-          content.
+          Roamify Planners reserves the right to remove any participant
+          misbehaving or disrupting the tour experience for others.
         </li>
       </ul>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">4. Booking & Payments</h2>
+      <h2 className="text-xl font-semibold mt-6 mb-2">8. Health & Safety</h2>
       <p className="mb-4">
-        All bookings made through our website are subject to availability and
-        confirmation. Prices and availability are subject to change without
-        prior notice.
+        All participants must disclose any existing medical conditions
+        beforehand. Roamify Planners is not responsible for any health issues
+        arising during the trip due to undisclosed conditions or negligence.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">
-        5. Limitation of Liability
-      </h2>
+      <h2 className="text-xl font-semibold mt-6 mb-2">9. Force Majeure</h2>
       <p className="mb-4">
-        We are not liable for any indirect, incidental, or consequential damages
-        that may arise from the use or inability to use our website or services.
+        We are not liable for any failure or delay in performance due to causes
+        beyond our control, including but not limited to natural disasters,
+        political unrest, or transport strikes.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">
-        6. Intellectual Property
-      </h2>
+      <h2 className="text-xl font-semibold mt-6 mb-2">10. Jurisdiction</h2>
       <p className="mb-4">
-        All content on this site, including text, graphics, logos, and images,
-        is the property of [Your Company Name] and is protected by applicable
-        copyright and trademark laws.
+        All disputes will be subject to the jurisdiction of courts located in
+        Jaipur, Rajasthan, India.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">7. Modifications</h2>
-      <p className="mb-4">
-        We reserve the right to revise these Terms and Conditions at any time.
-        By using this website, you agree to be bound by the current version.
-      </p>
-
-      <h2 className="text-xl font-semibold mt-6 mb-2">8. Governing Law</h2>
-      <p className="mb-4">
-        These terms are governed by and construed in accordance with the laws of
-        [Your Country/State], and you irrevocably submit to the exclusive
-        jurisdiction of the courts in that location.
-      </p>
-
-      <h2 className="text-xl font-semibold mt-6 mb-2">
-        9. Contact Information
-      </h2>
+      <h2 className="text-xl font-semibold mt-6 mb-2">11. Contact Us</h2>
       <p>
-        For any questions or concerns about these Terms and Conditions, you may
-        contact us at:
+        For queries regarding bookings, payments, or policies, contact us at:
         <br />
         📧{" "}
         <Link
-          href={"mailto:rishabh@roamifyplanners.in"}
+          href="mailto:roamifyplanners@gmail.com"
           className="font-medium text-blue-600"
         >
-          rishabh@roamifyplanners.in
+          roamifyplanners@gmail.com
         </Link>
+        <br />
+        📞 +91 8239002370
       </p>
     </div>
   );

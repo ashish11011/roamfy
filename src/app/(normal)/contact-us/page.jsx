@@ -7,6 +7,7 @@ import { Checkbox } from "antd";
 import { ArrowUpRight, Mail, PhoneIcon } from "lucide-react";
 import React from "react";
 import { ContactForm } from "./contactForm";
+import Link from "next/link";
 
 const Page = () => {
   return (
@@ -29,8 +30,10 @@ function Contacts() {
         </div>
         <p className=" text-4xl font-semibold">Phone Number</p>
         <div className=" space-y-2">
-          <p className=" text-lg">+916239565852</p>
-          <p className=" text-lg">+916239565852</p>
+          <Link href={"tel:+918239002370"} className=" text-lg">
+            +91 8239002370
+          </Link>
+          {/* <p className=" text-lg">+916239565852</p> */}
         </div>
       </div>
       <div className=" h-full w-full sm:max-w-lg items-center bg-[#f6efe6] px-6 py-12 rounded-2xl flex flex-col gap-4 ">
@@ -39,8 +42,10 @@ function Contacts() {
         </div>
         <p className=" text-4xl font-semibold">Email Address</p>
         <div className=" space-y-2">
-          <p className=" text-lg">email@gmail.com</p>
-          <p className=" text-lg">email@gmail.com</p>
+          <Link href={"mailto:roamifyplanners@gmail.com"} className=" text-lg">
+            roamifyplanners@gmail.com
+          </Link>
+          {/* <p className=" text-lg">email@gmail.com</p> */}
         </div>
       </div>
     </div>

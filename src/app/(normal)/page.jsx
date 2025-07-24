@@ -28,7 +28,6 @@ const Home = async () => {
       <FAQsAccordion />
       <BlogSection />
       <SubscribeNewsletter />
-      <Link href="/admin">Admin</Link>
     </div>
   );
 };
@@ -59,8 +58,8 @@ function HeroSection2() {
           </span>
 
           <p className="text-center mb-6 text-lg md:text-xl md:text-left text-gray-500 ">
-            Brouse handpicked travel plans crafted for every kind of explore
-            handpicked travel plans crafted for every kind of explore
+            Corporate trips, school tours, honeymoons - we plan every journey
+            with ease and precision.
           </p>
 
           <button className="  mx-auto text-lg md:m-0 w-full bg-primary text-white font-semibold hover:scale-105 cursor-pointer duration-200 shadow py-3 px-6  rounded-full sm:w-fit">
@@ -83,18 +82,18 @@ function TravelWithUs() {
   const data = [
     {
       icon: "./plane.svg",
-      title: "500+ Destinations",
-      desc: "Etiam porta sem malesuada magna",
+      title: "Multiple Prime Destinations",
+      desc: "From Goa to Manali, Jaisalmer to Udaipur – explore India’s top travel spots with us.",
     },
     {
       icon: "./clock-1.svg",
-      title: "Best Price Guarantee",
-      desc: "Etiam porta sem malesuada magna",
+      title: "End-to-End Service",
+      desc: "We handle everything—transport, meals, stays, activities—so you don’t spend a penny during the trip.",
     },
     {
       icon: "./tree.svg",
-      title: "Top Notch Support",
-      desc: "Etiam porta sem malesuada magna",
+      title: "Unforgettable Experiences",
+      desc: "DJ nights, bonfires, gala dinners—customized to make every journey memorable and stress-free.",
     },
   ];
 
@@ -126,90 +125,90 @@ function TravelCard({ icon, title, desc }) {
 function TravelPerfection() {
   const contentSections = [
     {
-      title: "Tell us what you want to do",
+      title: "Tell us about your trip",
       description:
-        "Share your travel goals — from meetings and conferences to off-site retreats. We’ll tailor the perfect business travel plan to suit your needs.",
+        "Whether it’s a corporate event, school excursion, college tour, or a honeymoon, share your travel goals with us — we’ll tailor the perfect experience.",
     },
     {
-      title: "Share your travel preference",
+      title: "We’ll handle all the planning",
       description:
-        "Let us know your preferred airlines, hotel types, budget limits, and travel policies. We align every booking to match your company’s standards.",
+        "From transport and hotel bookings to meals, sightseeing, and activities — our dedicated travel manager ensures a smooth, worry-free journey.",
     },
     {
-      title: "We’ll give you recommendations",
+      title: "Just show up & enjoy",
       description:
-        "Based on your preferences, we’ll suggest optimized travel options that balance comfort, cost, and convenience — all in real-time.",
+        "Dance at DJ nights, sit around a bonfire, or chill by the pool — we’ll take care of everything else to make your trip unforgettable.",
     },
   ];
 
   return (
-    <div className=" bg-emerald-50 w-full px-4">
-      <div className=" mx-auto max-w-7xl py-20">
-        <h3 className=" text-lg text-emerald-600 italic mb-3 font-medium text-center">
+    <div className="bg-emerald-50 w-full px-4">
+      <div className="mx-auto max-w-7xl py-20">
+        <h3 className="text-lg text-emerald-600 italic mb-3 font-medium text-center">
           Three steps for a perfect trip
         </h3>
-        <h2 className=" text-center text-5xl font-medium font-playfair">
+        <h2 className="text-center text-5xl font-medium font-playfair">
           Find Travel Perfection
         </h2>
-        <p className=" text-center mx-auto max-w-3xl mt-4 text-gray-400">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
-          nemo nihil et sint dolore earum at quidem, quam placeat incidunt
-          consequatur eius recusandae iste i
+        <p className="text-center mx-auto max-w-3xl mt-4 text-gray-400">
+          Planning a trip doesn’t have to be stressful. With Roamify Planners,
+          it’s as simple as telling us what you want — and showing up!
         </p>
 
-        <div className=" w-full  mt-12 grid grid-cols-2 md:grid-cols-3 gap-3 md:px-6">
+        <div className="w-full mt-12 grid grid-cols-2 md:grid-cols-3 gap-3 md:px-6">
           <TravelPerfectionCard
             title={contentSections[0].title}
             description={contentSections[0].description}
           >
             <div
-              className=" w-24 md:w-32 mx-auto  h-24 md:h-32 bg-red-100 flex items-center justify-center"
+              className="w-24 md:w-32 mx-auto h-24 md:h-32 bg-red-100 flex items-center justify-center"
               style={{
                 clipPath:
                   "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
               }}
             >
               <img
-                src={`/feature-1.svg`}
-                className=" size-12 md:size-16 object-contain"
-                alt="Feature Icon"
+                src={"/feature-1.svg"}
+                className="size-12 md:size-16 object-contain"
+                alt="Trip Type Icon"
               />
             </div>
           </TravelPerfectionCard>
+
           <TravelPerfectionCard
             title={contentSections[1].title}
             description={contentSections[1].description}
           >
             <div
-              className=" w-24 md:w-32 mx-auto  h-24 md:h-32 bg-blue-100 flex items-center justify-center"
+              className="w-24 md:w-32 mx-auto h-24 md:h-32 bg-blue-100 flex items-center justify-center"
               style={{
                 clipPath:
                   "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
               }}
             >
               <img
-                src={`/feature-2.svg`}
-                className=" size-12 md:size-16 object-contain"
-                alt="Feature Icon"
+                src={"/feature-2.svg"}
+                className="size-12 md:size-16 object-contain"
+                alt="Planning Icon"
               />
             </div>
           </TravelPerfectionCard>
+
           <TravelPerfectionCard
             title={contentSections[2].title}
             description={contentSections[2].description}
-            className=" "
           >
             <div
-              className=" h-24 w-24 md:w-32 mx-auto md:h-32 bg-emerald-100 flex items-center justify-center"
+              className="h-24 w-24 md:w-32 mx-auto md:h-32 bg-emerald-100 flex items-center justify-center"
               style={{
                 clipPath:
                   "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
               }}
             >
               <img
-                src={`/feature-3.svg`}
-                className=" size-16 md:size-20 object-contain"
-                alt="Feature Icon"
+                src={"/feature-3.svg"}
+                className="size-16 md:size-20 object-contain"
+                alt="Enjoy Icon"
               />
             </div>
           </TravelPerfectionCard>
