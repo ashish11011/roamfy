@@ -1,14 +1,10 @@
 import dayjs from "dayjs";
 import Link from "next/link";
-import { ArrowRightIcon, ChevronRightIcon } from "lucide-react";
-import Image from "next/image";
-import { Metadata, ResolvingMetadata } from "next";
+import { ChevronRightIcon } from "lucide-react";
 import { QueryForm } from "./queryForm";
 import { TableOfContents } from "./tableOfContext";
 import { getBlogBySlug } from "lib";
 import { blogCategories } from "@/const";
-import Footer from "@/conponents/Footer";
-import { NavBarAdmin } from "@/conponents/admin/navBar";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const slug = (await params).id;
@@ -48,7 +44,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 const Page = async ({ params }) => {
   const slug = (await params).id;
   const [blogData] = await getBlogBySlug(slug);
-  // const relatedBlogs = await getRelatedBlogs(blogData?.id);
+  console.log(blogData);
 
   if (!blogData) {
     return <p>Loading...</p>;

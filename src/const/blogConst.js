@@ -43,14 +43,14 @@ export const blogCategorySummery = [
 
 export const blogUser = [
   {
-    name: "Veer choudhary",
+    name: "Rishab Batra",
     image: "https://av-blog.s3.ap-south-1.amazonaws.com/uploads/veer-gu.jpeg",
-    value: "veer-choudhary",
+    value: "rishab-batra",
   },
   {
     name: "Ashish Bishnoi",
     image:
-      "https://av-blog.s3.ap-south-1.amazonaws.com/uploads/ashish-bishnoi.jpeg",
+      "https://codeframe-ashish-harshit.s3.ap-south-1.amazonaws.com/rishab/v1/roamfy/ashish.jpeg",
     value: "ashish-bishnoi",
   },
 ];

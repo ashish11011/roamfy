@@ -48,7 +48,9 @@ function Blogs({ blogsData }) {
   );
 }
 
-function formatToDateOnly(isoString) {
-  const date = dayjs(JSON.parse(isoString));
-  return date.isValid() ? date.format("DD-MM-YYYY") : "Invalid Date";
+export function formatToDateOnly(isoString) {
+  if (!isoString || typeof isoString !== "string") return null;
+
+  const date = dayjs(isoString);
+  return date.isValid() ? date.format("DD-MM-YYYY") : null;
 }

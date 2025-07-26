@@ -8,6 +8,7 @@ import { reviewsTable, tripTable } from "db/schema";
 import { Packages } from "./packages";
 import SubscribeNewsletter from "./subscribeNexsLetter";
 import { eq } from "drizzle-orm";
+import Image from "next/image";
 
 const Home = async () => {
   const [packageData, reviewData] = await Promise.all([
@@ -26,7 +27,7 @@ const Home = async () => {
       <TravelPerfection />
       <Testimonial reviewData={reviewData} />
       <FAQsAccordion />
-      <BlogSection />
+      <BlogSection blogData={homePageBlog} />
       <SubscribeNewsletter />
     </div>
   );
@@ -43,36 +44,41 @@ function HeroSection2() {
         backgroundPosition: "center",
       }}
     >
-      <div className="z-10 p-4  w-full mx-auto max-w-7xl">
-        <div className=" mx-auto md:mx-0 max-w-lg flex flex-col gap-6 w-full">
-          <img
-            src="/hero-car.png"
+      <div className=" max-w-7xl px-4 mx-auto w-full">
+        <div className=" justify-around flex-col-reverse gap-6 md:flex-row items-center flex w-full h-full">
+          <div className=" max-w-lg flex flex-col gap-6 w-full">
+            <h1 className="  text-center leading-12 xl:leading-16 md:text-left font-playfair text-dark text-5xl xl:text-6xl font-bold md:font-semibold">
+              Find your Perfect{" "}
+            </h1>
+            <span className=" text-center md:text-left text-6xl md:text-7xl xl:text-8xl text-red-500 font-extrabold">
+              Adventure
+            </span>
+
+            <p className="text-center mb-6 text-lg md:text-xl md:text-left text-gray-500 ">
+              Corporate trips, school tours, honeymoons - we plan every journey
+              with ease and precision.
+            </p>
+
+            <button className="  mx-auto text-lg md:m-0 w-full bg-primary text-white font-semibold hover:scale-105 cursor-pointer duration-200 shadow py-3 px-6  rounded-full sm:w-fit">
+              View Packages
+            </button>
+          </div>
+
+          <Image
+            src="https://ik.imagekit.io/roamfy/heromobile.png"
             alt=""
-            className=" block md:hidden w-full h-full object-cover"
+            width={500}
+            height={800}
+            className=" max-h-[16rem] block sm:hidden md:max-h-[42rem] object-cover w-full md:object-contain  h-full"
           />
-          <h1 className="  text-center leading-12 xl:leading-16 md:text-left font-playfair text-dark text-5xl xl:text-6xl font-bold md:font-semibold">
-            Find your Perfect{" "}
-          </h1>
-          <span className=" text-center md:text-left text-6xl md:text-7xl xl:text-8xl text-red-500 font-extrabold">
-            Adventure
-          </span>
-
-          <p className="text-center mb-6 text-lg md:text-xl md:text-left text-gray-500 ">
-            Corporate trips, school tours, honeymoons - we plan every journey
-            with ease and precision.
-          </p>
-
-          <button className="  mx-auto text-lg md:m-0 w-full bg-primary text-white font-semibold hover:scale-105 cursor-pointer duration-200 shadow py-3 px-6  rounded-full sm:w-fit">
-            View Packages
-          </button>
+          <Image
+            src="https://ik.imagekit.io/roamfy/herosection.png"
+            alt=""
+            width={500}
+            height={800}
+            className=" max-h-[16rem] hidden sm:block md:max-h-[42rem] object-cover w-full md:object-contain  h-full"
+          />
         </div>
-      </div>
-      <div className="hidden md:block absolute max-w-full md:max-w-[50%] w-full right-0 top-1/2 -translate-y-1/2 ">
-        <img
-          src="/hero-car.png"
-          alt=""
-          className=" w-full h-full object-cover"
-        />
       </div>
     </div>
   );
@@ -251,21 +257,63 @@ function BlogSection() {
         corporate trips — smarter travel, better experiences.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <BlogCard
-          image="/blog-bg.jpg"
-          date="07 Jan"
-          heading="Top 10 Hidden Gems Around the World You Need to Visit"
-          description="Discover a world beyond the popular tourist spots with our guide to the top 10 hidden gems that promise unique experiences."
-          blogLink="/blog/hidden-gems"
-        />
-        <BlogCard
-          image="/blog-bg.jpg"
-          date="07 Jan"
-          heading="Top 10 Hidden Gems Around the World You Need to Visit"
-          description="Discover a world beyond the popular tourist spots with our guide to the top 10 hidden gems that promise unique experiences."
-          blogLink="/blog/hidden-gems"
-        />
+        {homePageBlog.map((item) => {
+          return (
+            <BlogCard
+              key={item.id}
+              image={item.image}
+              date={item.date}
+              heading={item.title}
+              description={item.metaDescription}
+              blogLink={`/blog/${item.slug}`}
+            />
+          );
+        })}
       </div>
     </div>
   );
 }
+
+const homePageBlog = [
+  {
+    id: "d7ac304f-0091-4aa4-8697-4e2ec235bf48",
+    title: "🌞 Jaisalmer Travel Blog: My Golden City Adventure",
+    metaDescription:
+      "Discover the golden charm of Jaisalmer through a personal travel story filled with forts that breathe history, soulful desert nights, vibrant festivals, and authentic Rajasthani flavors. Whether you're planning a romantic escape or a cultural getaway, this guide brings you the real essence of the “Golden City.”",
+    blogCategory: "budget-friendly-group-trips",
+    image:
+      "https://s3.ap-south-1.amazonaws.com/codeframe-ashish-harshit/rishab/v1/roamfy/16cb61ff-274c-4858-b59f-ae733dafc22b.jpg",
+    tags: [
+      "JaisalmerDiaries",
+      "DesertSafariExperience",
+      "HiddenGemsOfRajasthan",
+    ],
+    date: '"2025-07-26T18:38:50.492Z"',
+    userImage:
+      "https://codeframe-ashish-harshit.s3.ap-south-1.amazonaws.com/rishab/v1/roamfy/ashish.jpeg",
+    userName: "Ashish Bishnoi",
+    slug: "-jaisalmer-travel-blog-my-golden-city-adventure",
+    isVisible: true,
+  },
+  {
+    id: "696d16d3-299b-4587-b13a-8241a6c19f4d",
+    title:
+      "✈️ Essential Things to Keep in Mind (and Carry) for Your International Trip",
+    metaDescription:
+      "Planning your first international trip—or your tenth? This ultimate guide shares must-know tips and packing essentials to ensure your journey goes off without a hitch. From passport and visa checks to the often-forgotten travel adapter, we've covered everything. Whether it's your health, money, or comfort, this list will help you travel smarter and stress-free. Powered by Roamify Planners' real-world experience, this is more than just a checklist—it’s your travel companion.",
+    blogCategory: "productivity-on-the-go",
+    image:
+      "https://s3.ap-south-1.amazonaws.com/codeframe-ashish-harshit/rishab/v1/roamfy/7ab9149b-42a6-4b36-b467-c805997c8163.jpg",
+    tags: [
+      "InternationalTravelTips",
+      "TravelPackingChecklist",
+      "RoamifyRecommends",
+    ],
+    date: '"2025-07-26T18:55:07.091Z"',
+    userImage:
+      "https://av-blog.s3.ap-south-1.amazonaws.com/uploads/veer-gu.jpeg",
+    userName: "Rishab Batra",
+    slug: "-essential-things-to-keep-in-mind-and-carry-for-your-international-trip",
+    isVisible: true,
+  },
+];
