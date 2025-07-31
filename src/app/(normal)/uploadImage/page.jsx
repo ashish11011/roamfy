@@ -28,8 +28,6 @@ const Page = () => {
     if (response.ok) {
       const data = await response.json();
 
-      console.log(data);
-
       for (let i = 0; i < 1; i++) {
         const responst = await fetch(data[0], {
           method: "PUT",
@@ -41,14 +39,9 @@ const Page = () => {
         const imageS3Link = getImageName(data[i]);
         imageLinks.push(imageS3Link);
       }
-
-      console.log("Image links:", imageLinks);
     } else {
       console.error("Error submitting form:", response.statusText);
     }
-    console.log("Image links:", imageLinks);
-    // setFormData({ ...formData, images: imageLinks });
-    // setImageAdded(true);
   }
 
   return (

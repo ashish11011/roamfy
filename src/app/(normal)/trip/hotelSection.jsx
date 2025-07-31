@@ -1,5 +1,6 @@
 import Heading from "@/components/heading";
 import { MapPin, Star } from "lucide-react";
+import Image from "next/image";
 
 export function HotelSection({ hotelData }) {
   return (
@@ -17,7 +18,9 @@ export function HotelSection({ hotelData }) {
 const HotelCard = ({ item }) => {
   return (
     <div className=" w-full  sm:max-w-72 rounded-2xl overflow-hidden shadow-lg bg-white">
-      <img
+      <Image
+        width={350}
+        height={350}
         className="w-full h-48 md:h-44 object-cover"
         src={item.hotelImage}
         alt="Hotel"
@@ -33,10 +36,10 @@ const HotelCard = ({ item }) => {
             ))}
           </div>
         </div>
-        <div className="flex items-center text-sm text-gray-500 mb-3">
+        {/* <div className="flex items-center text-sm text-gray-500 mb-3">
           <MapPin className="w-4 h-4 mr-1" />
           <span>{item.hotelLocation}</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

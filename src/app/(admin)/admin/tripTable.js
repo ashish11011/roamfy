@@ -18,7 +18,6 @@ export function TripTable({ tripData }) {
   const [data, setData] = useState(tripData);
 
   const handleToggle = async (id, currentValue) => {
-    console.log("Client: ", id, currentValue);
     const newValue = !currentValue;
 
     setLoadingIds((prev) => ({ ...prev, [id]: true }));

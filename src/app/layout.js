@@ -10,6 +10,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* google search console for www.rishabbatra@gmail.com */}
+        <meta
+          name="google-site-verification"
+          content="xV0cksNtd80df7kxg1RIRkz0k6lqVtxYEI4HVKA6xfU"
+        />
+      </head>
       <body className={` scroll-smooth ${inter.className} antialiased`}>
         {children}
       </body>

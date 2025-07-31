@@ -11,6 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Image from "next/image";
 
 export function TripImageCousel({ imagesArray }) {
   return (
@@ -33,9 +34,11 @@ export function TripImageCousel({ imagesArray }) {
               <Card className={"overflow-hidden"}>
                 <CardContent className="flex h-[50vh] md:h-[70vh] items-center justify-center">
                   {/* <span className="text-4xl font-semibold">{index + 1}</span> */}
-                  <img
+                  <Image
                     src={imgLink}
                     alt=""
+                    width={900}
+                    height={900}
                     className=" w-full h-full object-cover"
                   />
                 </CardContent>

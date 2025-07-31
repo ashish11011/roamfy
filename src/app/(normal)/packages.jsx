@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 export function Packages({ data: tripData }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isToggleDomestic, setIsToggleDomestic] = useState(false);
@@ -86,13 +87,20 @@ function PackageCard({ title, bannerImage, dates, slug, idx }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: idx * 0.1 }}
-      style={{
-        backgroundImage: `url(${bannerImage})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }}
-      className="border flex justify-end rounded-2xl overflow-hidden shadow-md h-96 hover:shadow-lg "
+      // style={{
+      //   backgroundImage: `url(${bannerImage})`,
+      //   backgroundPosition: "center",
+      //   backgroundSize: "cover",
+      // }}
+      className="border relative flex justify-end rounded-2xl overflow-hidden shadow-md h-96 hover:shadow-lg "
     >
+      <Image
+        src={bannerImage}
+        alt={title}
+        width={500}
+        height={500}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
       <div className=" w-full relative py-6 px-4 flex flex-col mt-auto h-fit text-white ">
         <div className=" absolute top-0 left-0 w-full h-full blur bg-gradient-to-b from-[#0f0f0f3f] via-black to-black opacity-70"></div>
         <div className=" z-20 flex flex-col justify-between w-full ">

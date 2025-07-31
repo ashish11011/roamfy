@@ -44,7 +44,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
 const Page = async ({ params }) => {
   const slug = (await params).id;
   const [blogData] = await getBlogBySlug(slug);
-  console.log(blogData);
 
   if (!blogData) {
     return <p>Loading...</p>;
@@ -52,7 +51,6 @@ const Page = async ({ params }) => {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      ``
       <div className="mx-auto mt-12 grid max-w-screen-2xl grid-cols-12 gap-6 px-4">
         <div className="sticky top-24 col-span-3 hidden h-fit lg:block">
           <TableOfContents slug={slug} />

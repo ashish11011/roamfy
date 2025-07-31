@@ -10,7 +10,6 @@ function InputTagList({ value = [], setList }) {
   useEffect(() => {}, [currentValue]);
 
   const handleKeyDown = (e) => {
-    console.log("key down");
     if (e.key === "Enter" && currentValue.trim() !== "") {
       e.preventDefault();
       if (!value.includes(currentValue.trim())) {

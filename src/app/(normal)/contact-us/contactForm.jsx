@@ -15,10 +15,6 @@ export const ContactForm = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    console.log(name, email, address, mobile, message);
-  }, [name, email, address, mobile, message]);
-
   async function handleSubmit() {
     setLoading(true);
     await insertContactDetail({

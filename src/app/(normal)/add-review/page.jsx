@@ -40,7 +40,6 @@ const Page = () => {
       setMessage("");
     }
 
-    console.log("data submitted");
     setLoading(false);
   };
 

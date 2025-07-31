@@ -44,10 +44,6 @@ export const TripForm = ({ tripData }) => {
     ],
   });
 
-  useEffect(() => {
-    console.log(cTripDetails);
-  }, [cTripDetails]);
-
   async function handleSubmit() {
     setIsLoading(true);
     if (cTripDetails.isNew) {

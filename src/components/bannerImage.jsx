@@ -37,8 +37,6 @@ export function UploadImage({ image, setImage }) {
     if (response.ok) {
       const data = await response.json();
 
-      console.log(data);
-
       const responst = await fetch(data[0], {
         method: "PUT",
         body: inputRef.current.files[0],

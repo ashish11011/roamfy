@@ -89,10 +89,6 @@ const TiptapEditor = ({ data }) => {
 
   const [savedHtml, setSavedHtml] = useState("");
 
-  useEffect(() => {
-    console.log(blogDate);
-  }, [blogDate]);
-
   const handleSave = async () => {
     setLoading(true);
     if (editor) {
