@@ -6,6 +6,27 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
+export const metadata = {
+  title: "Blogs - Roamify Planners",
+  description:
+    "Discover expert travel tips, destination guides, and curated experiences with Roamify Planners to make every journey unforgettable.",
+  alternates: {
+    canonical: "https://www.roamifyplanners.in/blog/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "Blogs - Roamify Planners",
+    description:
+      "Discover expert travel tips, destination guides, and curated experiences with Roamify Planners to make every journey unforgettable.",
+    url: "https://www.roamifyplanners.in/blog/",
+    siteName: "Roamify Planners",
+    type: "website",
+  },
+};
+
 const Page = async () => {
   const blogsData = await getAdminBlogData();
   return (

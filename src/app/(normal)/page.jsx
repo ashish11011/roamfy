@@ -10,6 +10,39 @@ import SubscribeNewsletter from "./subscribeNexsLetter";
 import { eq } from "drizzle-orm";
 import Image from "next/image";
 
+export const metadata = {
+  title: {
+    absolute: "Roamify Planners",
+  },
+  description:
+    "Plan unforgettable trips with Roamify Planners - from corporate tours to honeymoons. Hassle-free bookings, curated experiences, and 24/7 travel support.",
+  alternates: {
+    canonical: "https://www.roamifyplanners.in/",
+  },
+  keywords: [
+    "Roamify Planners",
+    "Roamify",
+    "travel planner",
+    "travel",
+    "trips",
+    "bali trip",
+    "honeymoon trip",
+    "corporate trip",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "Roamify Planners",
+    description:
+      "One of the top providers of AI development services, AV Technosys, enhances business operations by automating processes, boosting productivity, and more",
+    url: "https://www.roamifyplanners.in/",
+    siteName: "Roamify Planners",
+    type: "website",
+  },
+};
+
 const Home = async () => {
   const [packageData, reviewData] = await Promise.all([
     db.select().from(tripTable),
@@ -89,12 +122,12 @@ function TravelWithUs() {
     {
       icon: "./plane.svg",
       title: "Multiple Prime Destinations",
-      desc: "From Goa to Manali, Jaisalmer to Udaipur – explore India’s top travel spots with us.",
+      desc: "From Goa to Manali, Bali to Dubai - explore World's top travel spots with us.",
     },
     {
       icon: "./clock-1.svg",
       title: "End-to-End Service",
-      desc: "We handle everything—transport, meals, stays, activities—so you don’t spend a penny during the trip.",
+      desc: "We handle everything—transport, meals, stays, activities—so you don't spend a penny during the trip.",
     },
     {
       icon: "./tree.svg",

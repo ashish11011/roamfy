@@ -1,13 +1,38 @@
-"use client";
-import Input from "@/conponents/input";
-import SubmitButton from "@/conponents/submitButton";
-import Textarea from "@/conponents/textArea";
 import HeroBG from "@/conponents/tripHero";
-import { Checkbox } from "antd";
-import { ArrowUpRight, Mail, PhoneIcon } from "lucide-react";
+import { Mail, PhoneIcon } from "lucide-react";
 import React from "react";
 import { ContactForm } from "./contactForm";
 import Link from "next/link";
+
+export const metadata = {
+  title: {
+    absolute: "Contact Us | Roamify Planners",
+  },
+  description:
+    "Get in touch with Roamify Planners for personalized travel assistance, bookings, and trip planning. Contact us via phone, email, or our online form to plan your next corporate tour, school trip, or honeymoon effortlessly.",
+  alternates: {
+    canonical: "https://www.roamifyplanners.in/contact-us",
+  },
+  keywords: [
+    "Contact Roamify Planners",
+    "travel agency contact",
+    "trip planning support",
+    "honeymoon bookings",
+    "corporate travel help",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "Contact Us | Roamify Planners",
+    description:
+      "Reach out to Roamify Planners for travel assistance, bookings, and custom trip planning. We’re here to make your journey seamless and memorable.",
+    url: "https://www.roamifyplanners.in/contact-us",
+    siteName: "Roamify Planners",
+    type: "website",
+  },
+};
 
 const Page = () => {
   return (

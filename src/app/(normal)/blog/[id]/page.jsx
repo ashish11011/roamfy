@@ -12,29 +12,19 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
   return {
     title: {
-      absolute: post?.title || "AV Technosys Blog",
+      absolute: post?.title || "Roamify Planners",
     },
     description: post?.metaDescription,
     keywords: post?.tags,
     publisher: post?.userName,
     alternates: {
-      canonical: `https://www.avtechnosys.com/blog/${slug}/`,
+      canonical: `https://www.roamifyplanners.in/blog//${slug}/`,
     },
     openGraph: {
       title: post?.title,
       description: post?.metaDescription,
-      url: `https://www.avtechnosys.com/blog/${slug}/`,
-      siteName: "AV Technosys",
-      images: [
-        {
-          url:
-            post?.image ||
-            "https://av-blog-web.s3.ap-south-1.amazonaws.com/av-only-logo.png",
-          width: 512,
-          height: 512,
-          alt: post?.title || "AV Technosys Logo",
-        },
-      ],
+      url: `https://www.roamifyplanners.in/blog//${slug}/`,
+      siteName: "Roamify Planners",
       type: "website",
       locale: "en_IN",
     },

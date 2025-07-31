@@ -1,10 +1,38 @@
-"use client";
-
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import HeroBG from "@/conponents/tripHero";
 import TravellerGallery from "./TravelGallary";
 import Link from "next/link";
+
+export const metadata = {
+  title: {
+    absolute: "About Us | Roamify Planners",
+  },
+  description:
+    "Learn more about Roamify Planners – your trusted travel partner for corporate trips, school tours, honeymoons, and curated travel experiences. Discover our story, values, and mission to make every journey memorable.",
+  alternates: {
+    canonical: "https://www.roamifyplanners.in/about-us",
+  },
+  keywords: [
+    "About Roamify Planners",
+    "Roamify travel agency",
+    "corporate tours India",
+    "honeymoon trips planner",
+    "custom travel packages",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "About Us | Roamify Planners",
+    description:
+      "Roamify Planners is your go-to travel partner for corporate trips, honeymoons, school excursions, and customized tours. Explore our journey and mission to make travel seamless and unforgettable.",
+    url: "https://www.roamifyplanners.in/about-us",
+    siteName: "Roamify Planners",
+    type: "website",
+  },
+};
 
 export default function AboutUsSection() {
   return (

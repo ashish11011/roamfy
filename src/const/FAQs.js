@@ -22,7 +22,7 @@ export const FAQsData = [
   {
     question: "How early should we book a trip?",
     answer:
-      "We recommend booking at least 4–6 weeks in advance to get the best rates and availability. For peak seasons or large groups, booking earlier ensures smoother planning and better customization.",
+      "We recommend booking at least 4-6 weeks in advance to get the best rates and availability. For peak seasons or large groups, booking earlier ensures smoother planning and better customization.",
   },
   {
     question: "Do you provide any benefits for school/college trips?",
