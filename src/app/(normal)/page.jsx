@@ -77,7 +77,7 @@ function HeroSection2() {
         backgroundPosition: "center",
       }}
     >
-      <div className=" max-w-7xl px-4 mx-auto w-full">
+      {/* <div className=" max-w-7xl px-4 mx-auto w-full">
         <div className=" justify-around flex-col-reverse gap-6 md:flex-row items-center flex w-full h-full">
           <div className=" max-w-lg flex flex-col gap-6 w-full">
             <h1 className="  text-center leading-12 xl:leading-16 md:text-left font-playfair text-dark text-5xl xl:text-6xl font-bold md:font-semibold">
@@ -112,6 +112,41 @@ function HeroSection2() {
             className=" max-h-[16rem] hidden sm:block md:max-h-[42rem] object-cover w-full md:object-contain  h-full"
           />
         </div>
+      </div> */}
+
+      <div className="z-10 p-4  w-full mx-auto max-w-7xl">
+        <div className=" mx-auto md:mx-0 max-w-lg flex flex-col gap-6 w-full">
+          <img
+            src="/hero-car.png"
+            alt=""
+            className=" block md:hidden w-full h-full object-cover"
+          />
+          <h1 className="  text-center leading-12 xl:leading-16 md:text-left font-playfair text-dark text-5xl xl:text-6xl font-bold md:font-semibold">
+            Find your Perfect{" "}
+          </h1>
+          <span className=" text-center md:text-left text-6xl md:text-7xl xl:text-8xl text-red-500 font-extrabold">
+            Adventure
+          </span>
+
+          <p className="text-center mb-6 text-lg md:text-xl md:text-left text-gray-500 ">
+            Corporate trips, school tours, honeymoons - we plan every journey
+            with ease and precision.
+          </p>
+
+          <Link
+            href={"#package"}
+            className="  mx-auto text-lg md:m-0 w-full bg-primary text-white font-semibold hover:scale-105 cursor-pointer duration-200 shadow py-3 px-6  rounded-full sm:w-fit"
+          >
+            View Packages
+          </Link>
+        </div>
+      </div>
+      <div className="hidden md:block absolute max-w-full md:max-w-[50%] w-full right-0 top-1/2 -translate-y-1/2 ">
+        <img
+          src="/hero-car.png"
+          alt=""
+          className=" w-full h-full object-cover"
+        />
       </div>
     </div>
   );
