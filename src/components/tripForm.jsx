@@ -256,11 +256,11 @@ export const TripForm = ({ tripData }) => {
 function SubmitButton({ isLoading, onClickHandler }) {
   return (
     <button
-      // disabled={isLoading}
+      disabled={isLoading}
       onClick={onClickHandler}
       className={cn(
-        " rounded cursor-pointer py-2 px-4 bg-primary text-white"
-        // isLoading && " opacity-50 cursor-not-allowed"
+        " rounded cursor-pointer py-2 px-4 bg-primary text-white",
+        `${isLoading && " opacity-50 cursor-not-allowed"} `
       )}
     >
       Save

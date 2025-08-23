@@ -16,6 +16,10 @@ export function HotelSection({ hotelData }) {
 }
 
 const HotelCard = ({ item }) => {
+  if (!item.hotelName) {
+    return null;
+  }
+
   return (
     <div className=" w-full  sm:max-w-72 rounded-2xl overflow-hidden shadow-lg bg-white">
       <Image

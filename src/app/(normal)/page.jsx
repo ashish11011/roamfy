@@ -10,6 +10,9 @@ import SubscribeNewsletter from "./subscribeNexsLetter";
 import { eq } from "drizzle-orm";
 import Image from "next/image";
 
+export const revalidate = 2592000; // every 1 month
+
+// Metadata
 export const metadata = {
   title: {
     absolute: "Roamify Planners",
@@ -45,7 +48,7 @@ export const metadata = {
 
 const Home = async () => {
   const [packageData, reviewData] = await Promise.all([
-    db.select().from(tripTable),
+    db.select().from(tripTable).where(eq(tripTable.isVisible, true)),
     db
       .select()
       .from(reviewsTable)

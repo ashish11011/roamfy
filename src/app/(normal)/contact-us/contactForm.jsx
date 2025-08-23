@@ -17,13 +17,21 @@ export const ContactForm = () => {
 
   async function handleSubmit() {
     setLoading(true);
-    await insertContactDetail({
+    const res = await insertContactDetail({
       name,
       email,
       address,
       mobile,
       message,
     });
+
+    setName("");
+    setEmail("");
+    setAddress("");
+    setMobile("");
+    setMessage("");
+
+    if (!res) alert("Form Submit Failed, Please Try Again");
     setLoading(false);
   }
   return (

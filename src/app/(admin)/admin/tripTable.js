@@ -7,15 +7,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { PencilIcon } from "lucide-react";
+import { LoaderCircle, PencilIcon, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { Switch } from "@/components/ui/switch";
-import { toggleTripVisiblity } from "lib";
-import { useState } from "react";
+import { handleDeleteTripById, toggleTripVisiblity } from "lib";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function TripTable({ tripData }) {
   const [loadingIds, setLoadingIds] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(tripData);
+
+  const router = useRouter();
 
   const handleToggle = async (id, currentValue) => {
     const newValue = !currentValue;
@@ -41,6 +45,27 @@ export function TripTable({ tripData }) {
       setLoadingIds((prev) => ({ ...prev, [id]: false }));
     }
   };
+
+  async function handleDelete(id) {
+    setIsLoading(true);
+
+    try {
+      const res = await fetch("/api/admin/trip/delete", {
+        method: "POST",
+        body: JSON.stringify({ id }),
+      });
+      // await handleDeleteTripById(id);
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    setData(tripData);
+  }, [tripData]);
 
   // }
   return (
@@ -77,12 +102,25 @@ export function TripTable({ tripData }) {
               {/* <IsVisibleToggle tripId={item.id} currentState={item.isVisible} /> */}
             </TableCell>
             <TableCell>
-              <Link href={`/admin/trip?id=${item.id}`}>
-                <PencilIcon
-                  className=" hover:scale-125 duration-200"
-                  size={20}
-                />
-              </Link>
+              <div className=" flex items-center gap-2">
+                <Link href={`/admin/trip?id=${item.id}`}>
+                  <PencilIcon
+                    className=" hover:scale-125 duration-200"
+                    size={20}
+                  />
+                </Link>
+                <button onClick={() => handleDelete(item.id)}>
+                  {isLoading ? (
+                    <LoaderCircle className="animate-spin" size={20} />
+                  ) : (
+                    <Trash2
+                      className=" hover:scale-125 cursor-pointer duration-200"
+                      size={20}
+                      color="red"
+                    />
+                  )}
+                </button>
+              </div>
             </TableCell>
           </TableRow>
         ))}

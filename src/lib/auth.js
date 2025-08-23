@@ -61,5 +61,9 @@ export const authOptions = {
       session.user = token.user;
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      console.log("🔹 NextAuth redirect:", { url, baseUrl });
+      return baseUrl;
+    },
   },
 };

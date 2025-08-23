@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { getAllTrips } from "../../../../lib";
-import ImageUploader from "./imageUpload";
 import { TripTable } from "./tripTable";
+
+export const revalidate = 2592000; // every 1 month
 
 const Page = async () => {
   const allTripData = await getAllTrips();
