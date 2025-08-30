@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/popover";
 
 export function DatePicker({ date, setDate }) {
+  console.log("|||", date, "|||");
   return (
     <Popover>
       <PopoverTrigger asChild>

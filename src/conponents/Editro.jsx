@@ -177,12 +177,12 @@ const TiptapEditor = ({ data }) => {
       <div className="flex w-full flex-col gap-6 sm:flex-row">
         <SelectBlogCategories value={blogCategory} onChange={setBlogCategory} />
         <SelectUser value={user} onChange={setUser} />
-        <TitleDatepicker
+        {/* <TitleDatepicker
           value={blogDate}
           onChange={setBlogDate}
           title={"Published Date"}
           className={"mb-4"}
-        />
+        /> */}
       </div>
       {/* date and category */}
 

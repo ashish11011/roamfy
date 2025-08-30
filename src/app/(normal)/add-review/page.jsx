@@ -87,7 +87,7 @@ const Page = () => {
           </div>
 
           {/* Encouragement Message */}
-          <div className="mt-2 text-sm text-gray-600 min-h-[1.5rem]">
+          <div className="mt-2 text-lg  text-gray-600 min-h-[1.5rem]">
             {hoverStar === 5 || star === 5 ? (
               <span>⭐ You're awesome! Thanks for the perfect score! 😊</span>
             ) : hoverStar || star ? (

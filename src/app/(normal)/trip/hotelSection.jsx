@@ -20,6 +20,8 @@ const HotelCard = ({ item }) => {
     return null;
   }
 
+  console.log("|||", item.hotelRating, "|||");
+
   return (
     <div className=" w-full  sm:max-w-72 rounded-2xl overflow-hidden shadow-lg bg-white">
       <Image
@@ -35,9 +37,10 @@ const HotelCard = ({ item }) => {
             {item.hotelName}
           </h2>
           <div className="flex text-yellow-500">
-            {[...Array(Number(item.hotelRating))].map((_, i) => (
-              <Star key={i} size={16} fill="currentColor" stroke="none" />
-            ))}
+            {item.hotelRating &&
+              [...Array(Number(item.hotelRating))].map((_, i) => (
+                <Star key={i} size={16} fill="currentColor" stroke="none" />
+              ))}
           </div>
         </div>
         {/* <div className="flex items-center text-sm text-gray-500 mb-3">
