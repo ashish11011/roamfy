@@ -13,6 +13,7 @@ export const tripTable = pgTable("trips", {
   slug: varchar("slug"),
   title: varchar("title"),
   description: varchar("description"),
+  price: varchar("price"),
   tripInformation: varchar("trip_information"),
   images: varchar("images").array(),
   bannerImage: varchar("banner_image"),

@@ -81,7 +81,7 @@ export function Packages({ data: tripData }) {
   );
 }
 
-function PackageCard({ title, bannerImage, dates, slug, idx }) {
+function PackageCard({ title, bannerImage, price, dates, slug, idx }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -108,6 +108,9 @@ function PackageCard({ title, bannerImage, dates, slug, idx }) {
             <h3 className=" w-fit hover:underline text-2xl line-clamp-2 font-medium text-gray-100 mb-1">
               {title}
             </h3>
+            {/* <h3 className=" w-fit hover:underline  font-medium ">
+              Rs. {price}
+            </h3> */}
           </Link>
         </div>
       </div>

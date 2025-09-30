@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "db:studio": "npx drizzle-kit studio",
+    "db:push": "npx drizzle-kit push",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

@@ -24,6 +24,7 @@ export const TripForm = ({ tripData }) => {
     slug: tripData?.slug || "",
     title: tripData?.title || "",
     description: tripData?.description || "",
+    price: tripData?.price || "",
     tripInformation: tripData?.tripInformation || "",
     images: tripData?.images || [],
     bannerImage: tripData?.bannerImage || "",
@@ -64,6 +65,14 @@ export const TripForm = ({ tripData }) => {
         value={cTripDetails.title}
         onChange={(e) =>
           setCTripDetails({ ...cTripDetails, title: e.target.value })
+        }
+      />
+      <Input
+        title="Price"
+        placeholder="Enter trip pricing"
+        value={cTripDetails.price}
+        onChange={(e) =>
+          setCTripDetails({ ...cTripDetails, price: e.target.value })
         }
       />
       <Textarea
