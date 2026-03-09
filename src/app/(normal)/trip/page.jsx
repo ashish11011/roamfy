@@ -19,7 +19,7 @@ const Page = async ({ params, searchParams }) => {
   return (
     <div className=" text-gray-900 tracking-wide leading-7 w-full space-y-16">
       <HeroBG text={tripData?.title} />
-      <TripImageCousel imagesArray={tripData?.images} />
+      {/* <TripImageCousel imagesArray={tripData?.images} /> */}
       <TripDetails tripData={tripData} />
       {tripData?.hotels?.length > 0 && (
         <HotelSection hotelData={tripData?.hotels} />

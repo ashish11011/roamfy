@@ -18,6 +18,7 @@ export function TripFormTable({ data }) {
           <TableHead>Phone</TableHead>
           <TableHead>Location</TableHead>
           <TableHead>Message</TableHead>
+          <TableHead>Date</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

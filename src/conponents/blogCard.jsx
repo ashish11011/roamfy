@@ -17,7 +17,7 @@ const BlogCard = ({ image, date, heading, description, blogLink }) => {
           className=" w-full h-full object-cover"
         />
         <div className="absolute top-3 right-3 bg-white text-black text-sm font-semibold px-3 py-1 rounded-full shadow">
-          {formatDateToDDMMYYYY(date)}
+          {dayjs(typeof date === 'string' ? date.replace(/['"]/g, '') : date).format("D/M/YYYY")}
         </div>
       </div>
       <Link href={blogLink} className="text-3xl font-medium">

@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 export function Packages({ data: tripData }) {
   const [isLoading, setIsLoading] = useState(true);
-  const [isToggleDomestic, setIsToggleDomestic] = useState(false);
+  const [isToggleDomestic, setIsToggleDomestic] = useState(true);
   const [filtredTrip, setFiltredTrip] = useState(tripData);
   useEffect(() => {
     setIsLoading(true);
@@ -83,37 +83,38 @@ export function Packages({ data: tripData }) {
 
 function PackageCard({ title, bannerImage, price, dates, slug, idx }) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, delay: idx * 0.1 }}
-      // style={{
-      //   backgroundImage: `url(${bannerImage})`,
-      //   backgroundPosition: "center",
-      //   backgroundSize: "cover",
-      // }}
-      className="border relative flex justify-end rounded-2xl overflow-hidden shadow-md h-96 hover:shadow-lg "
-    >
-      <Image
-        src={bannerImage}
-        alt={title}
-        width={500}
-        height={500}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      <div className=" w-full relative py-6 px-4 flex flex-col mt-auto h-fit text-white ">
-        <div className=" absolute top-0 left-0 w-full h-full blur bg-gradient-to-b from-[#0f0f0f3f] via-black to-black opacity-70"></div>
-        <div className=" z-20 flex flex-col justify-between w-full ">
-          <Link href={`/trip?tripId=${slug}`}>
+    <Link href={`/trip?tripId=${slug}`}>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: idx * 0.1 }}
+        // style={{
+        //   backgroundImage: `url(${bannerImage})`,
+        //   backgroundPosition: "center",
+        //   backgroundSize: "cover",
+        // }}
+        className="border relative flex justify-end rounded-2xl overflow-hidden shadow-md h-96 hover:shadow-lg "
+      >
+        <Image
+          src={bannerImage}
+          alt={title}
+          width={500}
+          height={500}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className=" w-full relative py-6 px-4 flex flex-col mt-auto h-fit text-white ">
+          <div className=" absolute top-0 left-0 w-full h-full blur bg-gradient-to-b from-[#0f0f0f3f] via-black to-black opacity-70"></div>
+          <div className=" z-20 flex flex-col justify-between w-full ">
             <h3 className=" w-fit hover:underline text-2xl line-clamp-2 font-medium text-gray-100 mb-1">
               {title}
             </h3>
             {/* <h3 className=" w-fit hover:underline  font-medium ">
               Rs. {price}
             </h3> */}
-          </Link>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </Link>
   );
 }

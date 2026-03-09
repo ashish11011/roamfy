@@ -2,8 +2,6 @@ import BlogCard from "@/conponents/blogCard";
 import HeroBG from "@/conponents/tripHero";
 import dayjs from "dayjs";
 import { getAdminBlogData } from "lib";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import React from "react";
 
 export const metadata = {
@@ -58,7 +56,7 @@ function Blogs({ blogsData }) {
           <BlogCard
             key={item.id}
             image={item.image}
-            date={formatToDateOnly(item.date)}
+            date={item.date}
             heading={item.title}
             description={item.metaDescription}
             blogLink={`/blog/${item.slug}`}
@@ -67,11 +65,4 @@ function Blogs({ blogsData }) {
       })}
     </div>
   );
-}
-
-export function formatToDateOnly(isoString) {
-  if (!isoString || typeof isoString !== "string") return null;
-
-  const date = dayjs(isoString);
-  return date.isValid() ? date.format("DD-MM-YYYY") : null;
 }
