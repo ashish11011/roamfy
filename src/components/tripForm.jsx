@@ -28,6 +28,7 @@ export const TripForm = ({ tripData }) => {
     tripInformation: tripData?.tripInformation || "",
     images: tripData?.images || [],
     bannerImage: tripData?.bannerImage || "",
+    itinaryURL: tripData?.itinaryURL || "",
 
     itinary: tripData?.itinary || [],
 
@@ -73,6 +74,14 @@ export const TripForm = ({ tripData }) => {
         value={cTripDetails.price}
         onChange={(e) =>
           setCTripDetails({ ...cTripDetails, price: e.target.value })
+        }
+      />
+      <Input
+        title="Trip Itinary URL"
+        placeholder="https://...."
+        value={cTripDetails.itinaryURL}
+        onChange={(e) =>
+          setCTripDetails({ ...cTripDetails, itinaryURL: e.target.value })
         }
       />
       <Textarea

@@ -17,7 +17,7 @@ export const tripTable = pgTable("trips", {
   tripInformation: varchar("trip_information"),
   images: varchar("images").array(),
   bannerImage: varchar("banner_image"),
-
+  itinaryURL: varchar(""),
   itinary: varchar("itinary").array(),
 
   isFlightIncluded: boolean("is_flight_included").default(false),
