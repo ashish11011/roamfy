@@ -90,12 +90,12 @@ function PrivacyPolicy() {
         🌐{" "}
         <span className="font-medium">
           <Link
-            href="https://www.roamifyplanners.com"
+            href="https://www.roamifyplanners.in"
             target="_blank"
             rel="noopener noreferrer"
             className="text-emerald-600 underline"
           >
-            www.roamifyplanners.com
+            www.roamifyplanners.in
           </Link>
         </span>
       </p>
