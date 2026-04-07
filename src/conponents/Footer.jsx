@@ -42,8 +42,9 @@ const Footer = () => {
           <div className=" md:text-lg">
             <h3 className="font-semibold mb-3 md:mb-6 text-2xl">Address</h3>
             <p>
-              T - 3, Radhika villas, <br /> Shree Ram Vihar Colony, <br />{" "}
-              Kalyanpura, Sanganer, <br /> Jaipur, Rajasthan 302029
+              Ward No. - 17, Khairthal Road, <br />
+              Kishangarh Khairthal Tijara <br />
+              Khairthal Tijara, Rajasthan, 301405
             </p>
           </div>
 
