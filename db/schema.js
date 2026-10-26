@@ -28,6 +28,24 @@ export const tripTable = pgTable("trips", {
   hotels: jsonb("hotels").array(),
 });
 
+export const groupTripTable = pgTable("group_trips", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  slug: varchar("slug").notNull().unique(),
+  title: varchar("title").notNull(),
+  description: varchar("description"),
+  // INR per person, enabled options only: { "2": "12000.00", "4": "9000.00" }.
+  sharingPrices: jsonb("sharing_prices").notNull().default({}),
+  tripInformation: varchar("trip_information"),
+  images: varchar("images").array(),
+  bannerImage: varchar("banner_image"),
+  itinaryURL: varchar("itinerary_url"),
+  itinary: varchar("itinary").array(),
+  isFlightIncluded: boolean("is_flight_included").default(false),
+  isVisible: boolean("is_visible").notNull().default(true),
+  isDomestic: boolean("is_domestic").notNull().default(true),
+  hotels: jsonb("hotels").array(),
+});
+
 export const reviewsTable = pgTable("reviews", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: varchar("name"),

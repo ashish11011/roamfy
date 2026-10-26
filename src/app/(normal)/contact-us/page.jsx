@@ -1,8 +1,9 @@
 import HeroBG from "@/conponents/tripHero";
-import { Mail, PhoneIcon } from "lucide-react";
+import { Mail, MapPin, PhoneIcon } from "lucide-react";
 import React from "react";
 import { ContactForm } from "./contactForm";
 import Link from "next/link";
+import { BUSINESS_ADDRESS } from "@/const/contact";
 
 export const metadata = {
   title: {
@@ -48,8 +49,8 @@ export default Page;
 
 function Contacts() {
   return (
-    <div className=" w-full flex-col sm:flex-row max-w-7xl mx-auto p-4 flex items-center justify-center gap-4">
-      <div className=" h-full w-full sm:max-w-lg items-center bg-[#f6efe6] px-6 py-12 rounded-2xl flex flex-col gap-4 ">
+    <div className="w-full max-w-7xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="h-full w-full items-center bg-[#f6efe6] px-6 py-12 rounded-2xl flex flex-col gap-4">
         <div className=" bg-white p-4 rounded-full w-fit">
           <PhoneIcon className="w-9 h-9" fill="#084d2b" stroke="#084d2b" />
         </div>
@@ -61,7 +62,7 @@ function Contacts() {
           {/* <p className=" text-lg">+916239565852</p> */}
         </div>
       </div>
-      <div className=" h-full w-full sm:max-w-lg items-center bg-[#f6efe6] px-6 py-12 rounded-2xl flex flex-col gap-4 ">
+      <div className="h-full w-full items-center bg-[#f6efe6] px-6 py-12 rounded-2xl flex flex-col gap-4">
         <div className=" bg-white p-4 rounded-full w-fit">
           <Mail className="w-9 h-9" fill="#084d2b" stroke="white" />
         </div>
@@ -72,6 +73,13 @@ function Contacts() {
           </Link>
           {/* <p className=" text-lg">email@gmail.com</p> */}
         </div>
+      </div>
+      <div className="h-full w-full items-center bg-[#f6efe6] px-6 py-12 rounded-2xl flex flex-col gap-4">
+        <div className="bg-white p-4 rounded-full w-fit">
+          <MapPin className="w-9 h-9" stroke="#084d2b" />
+        </div>
+        <p className="text-4xl font-semibold">Address</p>
+        <p className="text-lg text-center">{BUSINESS_ADDRESS}</p>
       </div>
     </div>
   );

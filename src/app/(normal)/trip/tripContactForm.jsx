@@ -5,7 +5,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { insertContactDetail } from "lib";
 
-function TripContactFrom({ slug }) {
+function TripContactFrom({ slug, isGroupTour = false }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -43,7 +43,9 @@ function TripContactFrom({ slug }) {
   };
   return (
     <div className=" relative py-6 px-4 md:px-6 rounded-2xl h-fit bg-green-50 ring-2 ring-green-700/20 w-full md:max-w-sm flex flex-col gap-4">
-      <h3 className=" text-3xl text-center font-medium">Book Your Trip</h3>
+      <h3 className=" text-3xl text-center font-medium">
+        {isGroupTour ? "Book Your Group Tour" : "Book Your Trip"}
+      </h3>
       <p className=" text-center text-gray-600">
         Travel is less about destination and more about memories made along the
         way.

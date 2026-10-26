@@ -4,8 +4,8 @@ import { FAQsAccordion } from "@/components/FAQAccordion";
 import BlogCard from "@/conponents/blogCard";
 import { cn } from "@/lib/utils";
 import { db } from "lib/db";
-import { reviewsTable, tripTable } from "db/schema";
-import { Packages } from "./packages";
+import { groupTripTable, reviewsTable, tripTable } from "db/schema";
+import { GroupTourPackages, Packages } from "./packages";
 import SubscribeNewsletter from "./subscribeNexsLetter";
 import { eq } from "drizzle-orm";
 import Image from "next/image";
@@ -47,18 +47,20 @@ export const metadata = {
 };
 
 const Home = async () => {
-  const [packageData, reviewData] = await Promise.all([
+  const [packageData, reviewData, groupTripData] = await Promise.all([
     db.select().from(tripTable).where(eq(tripTable.isVisible, true)),
     db
       .select()
       .from(reviewsTable)
       .where(eq(reviewsTable.isAdminApproved, true)),
+    db.select().from(groupTripTable).where(eq(groupTripTable.isVisible, true)),
   ]);
   return (
     <div className=" min-h-screen h-full">
       {/* <HeroSection /> */}
       <HeroSection2 />
       <Packages data={packageData} />
+      <GroupTourPackages data={groupTripData} />
       <TravelWithUs />
       <TravelPerfection />
       <Testimonial reviewData={reviewData} />

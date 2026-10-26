@@ -1,6 +1,7 @@
 import HeroBG from "@/conponents/tripHero";
 import Link from "next/link";
 import React from "react";
+import { BUSINESS_ADDRESS } from "@/const/contact";
 
 const Page = () => {
   return (
@@ -121,6 +122,8 @@ function TermsAndConditions() {
         </Link>
         <br />
         📞 +91 8239002370
+        <br />
+        Address: {BUSINESS_ADDRESS}
       </p>
     </div>
   );

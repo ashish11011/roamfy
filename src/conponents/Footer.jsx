@@ -1,5 +1,6 @@
 import { Facebook, Instagram } from "lucide-react";
 import Link from "next/link";
+import { BUSINESS_ADDRESS } from "@/const/contact";
 
 const Footer = () => {
   return (
@@ -41,11 +42,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row flex-wrap justify-between gap-6 md:gap-8 pb-10">
           <div className=" md:text-lg">
             <h3 className="font-semibold mb-3 md:mb-6 text-2xl">Address</h3>
-            <p>
-              Ward No. - 17, Khairthal Road, <br />
-              Kishangarh Khairthal Tijara <br />
-              Khairthal Tijara, Rajasthan, 301405
-            </p>
+            <p className="max-w-sm">{BUSINESS_ADDRESS}</p>
           </div>
 
           <div className=" md:text-lg">
@@ -114,7 +111,7 @@ const Footer = () => {
         </div>
 
         <div className="text-center mt-4 text-sm border-t border-gray-400 pt-4">
-          Copyright © Roam Fy Planners
+          Copyright © Roamify Planners
         </div>
       </div>
     </div>

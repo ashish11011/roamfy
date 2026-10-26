@@ -1,24 +1,17 @@
 import { withAuth } from "next-auth/middleware";
+import { ADMIN_EMAILS } from "@/const/admin";
 
 export default withAuth(
   // `withAuth` augments your `Request` with the user's token.
   function middleware(req) {
-    console.log(req.nextauth.token);
   },
   {
     callbacks: {
       authorized: ({ token }) => {
-        return HOST_ALLOWED.includes(token?.email);
+        return ADMIN_EMAILS.includes(token?.email);
       },
     },
   }
 );
 
-export const config = { matcher: ["/admin"] };
-
-const HOST_ALLOWED = [
-  "macsingh11011@gmail.com",
-  "macsingh110@gmail.com",
-  "bishnoi11011@gmail.com",
-  "www.rishabh16batra@gmail.com",
-];
+export const config = { matcher: ["/admin/:path*", "/api/admin/:path*"] };

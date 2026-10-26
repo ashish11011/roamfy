@@ -11,6 +11,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = [
     { label: "Packages", href: "/#package" },
+    { label: "Group Tours", href: "/#group-tour-packages" },
     { label: "Blogs", href: "/blog" },
     { label: "Add Review", href: "/add-review" },
     { label: "About Us", href: "/about-us" },

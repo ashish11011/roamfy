@@ -9,7 +9,7 @@ export function NavBarAdmin() {
   const pathname = usePathname();
 
   return (
-    <div className=" flex items-center gap-2">
+    <div className="flex flex-wrap items-center gap-2">
       {navTabs.map((item) => {
         return (
           <Link
@@ -33,8 +33,12 @@ export function NavBarAdmin() {
 
 const navTabs = [
   {
-    name: "Home",
+    name: "Trips",
     href: "/admin",
+  },
+  {
+    name: "Group Trips",
+    href: "/admin/group-trips",
   },
   {
     name: "Contact Us",

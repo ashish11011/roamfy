@@ -1,7 +1,7 @@
 "use client";
 import Input from "@/conponents/input";
 import Textarea from "@/conponents/textArea";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { InputArray } from "./inputArray";
 import { CustomSwitch } from "./customSwitch";
 import { UploadImage } from "./bannerImage";
@@ -12,11 +12,13 @@ import { cn } from "@/lib/utils";
 // import { editTrip } from "../../lib/tripHelper";
 import { useRouter } from "next/navigation";
 import RichTextEditor from "@/conponents/RichTextEditor";
-import { editTrip, insertTrip } from "lib";
+import { editGroupTrip, editTrip, insertGroupTrip, insertTrip } from "lib";
+import { SHARING_OPTIONS, normalizeTripPricing } from "@/helper/groupTourPricing";
 
-export const TripForm = ({ tripData }) => {
+export const TripForm = ({ tripData, isGroupTour = false }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const [cTripDetails, setCTripDetails] = useState({
     isNew: tripData?.id ? false : true,
@@ -25,6 +27,7 @@ export const TripForm = ({ tripData }) => {
     title: tripData?.title || "",
     description: tripData?.description || "",
     price: tripData?.price || "",
+    sharingPrices: tripData?.sharingPrices || {},
     tripInformation: tripData?.tripInformation || "",
     images: tripData?.images || [],
     bannerImage: tripData?.bannerImage || "",
@@ -32,7 +35,7 @@ export const TripForm = ({ tripData }) => {
 
     itinary: tripData?.itinary || [],
 
-    isVisible: tripData?.isVisible || true,
+    isVisible: tripData?.isVisible ?? true,
     isDomestic: tripData?.isDomestic == false ? false : true,
 
     //hotel details
@@ -47,35 +50,101 @@ export const TripForm = ({ tripData }) => {
   });
 
   async function handleSubmit() {
+    setError("");
     setIsLoading(true);
-    if (cTripDetails.isNew) {
-      await insertTrip(cTripDetails);
-    } else {
-      await editTrip(cTripDetails);
+    try {
+      const pricing = normalizeTripPricing({ ...cTripDetails, isGroupTour });
+      const details = { ...cTripDetails, ...pricing };
+      if (cTripDetails.isNew) {
+        await (isGroupTour ? insertGroupTrip : insertTrip)(details);
+      } else {
+        await (isGroupTour ? editGroupTrip : editTrip)(details);
+      }
+      router.push(isGroupTour ? "/admin/group-trips" : "/admin");
+      router.refresh();
+    } catch (error) {
+      setError(error.message || "Unable to save. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
-    router.push("/admin");
   }
 
   return (
     <div className=" w-full  flex flex-col gap-6">
+      <h1 className="text-3xl font-semibold">
+        {cTripDetails.isNew ? "New" : "Edit"}{" "}
+        {isGroupTour ? "Group Tour Package" : "Trip"}
+      </h1>
+      {error && <p role="alert" className="text-red-700">{error}</p>}
       <SubmitButton onClickHandler={handleSubmit} isLoading={isLoading} />
       <Input
         title="Title"
-        placeholder="Enter trip title"
+        placeholder={isGroupTour ? "Enter group tour package title" : "Enter trip title"}
         value={cTripDetails.title}
         onChange={(e) =>
           setCTripDetails({ ...cTripDetails, title: e.target.value })
         }
       />
-      <Input
+      {isGroupTour ? (
+        <fieldset className="rounded-lg border p-4 space-y-4" disabled={isLoading}>
+          <legend className="px-2 font-semibold">Sharing prices</legend>
+          <p className="text-sm text-gray-600">
+            Enable the available room sharing options and enter each price in INR per person.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {SHARING_OPTIONS.map(({ key, label }) => {
+              const enabled = Object.hasOwn(cTripDetails.sharingPrices, key);
+              return (
+                <div key={key} className="rounded-md border p-3 space-y-3">
+                  <label className="flex items-center gap-2 font-medium">
+                    <input
+                      type="checkbox"
+                      checked={enabled}
+                      onChange={(event) => {
+                        const checked = event.target.checked;
+                        setCTripDetails(prev => {
+                          const sharingPrices = { ...prev.sharingPrices };
+                          if (checked) sharingPrices[key] = "";
+                          else delete sharingPrices[key];
+                          return { ...prev, sharingPrices };
+                        });
+                      }}
+                    />
+                    {label}
+                  </label>
+                  {enabled && (
+                    <label className="flex flex-col gap-1 text-sm">
+                      Price per person (₹)
+                      <input
+                        type="number"
+                        min="0.01"
+                        step="0.01"
+                        inputMode="decimal"
+                        value={cTripDetails.sharingPrices[key]}
+                        onChange={(event) => {
+                          const value = event.target.value;
+                          setCTripDetails(prev => ({
+                            ...prev, sharingPrices: { ...prev.sharingPrices, [key]: value },
+                          }));
+                        }}
+                        placeholder="Enter price"
+                        className="w-full rounded-md border bg-white px-2 py-1.5"
+                      />
+                    </label>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </fieldset>
+      ) : <Input
         title="Price"
         placeholder="Enter trip pricing"
         value={cTripDetails.price}
         onChange={(e) =>
           setCTripDetails({ ...cTripDetails, price: e.target.value })
         }
-      />
+      />}
       <Input
         title="Trip Itinary URL"
         placeholder="https://...."

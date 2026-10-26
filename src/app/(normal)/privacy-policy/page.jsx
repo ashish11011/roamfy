@@ -1,6 +1,7 @@
 import HeroBG from "@/conponents/tripHero";
 import Link from "next/link";
 import React from "react";
+import { BUSINESS_ADDRESS } from "@/const/contact";
 
 const Page = () => {
   return (
@@ -86,6 +87,8 @@ function PrivacyPolicy() {
         📧 <span className="font-medium">roamifyplanners@gmail.com</span>
         <br />
         📞 <span className="font-medium">+91 8239002370</span>
+        <br />
+        Address: <span className="font-medium">{BUSINESS_ADDRESS}</span>
         <br />
         🌐{" "}
         <span className="font-medium">

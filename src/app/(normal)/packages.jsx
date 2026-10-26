@@ -1,30 +1,14 @@
 "use client";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
-export function Packages({ data: tripData }) {
-  const [isLoading, setIsLoading] = useState(true);
+import { GroupTourPrices } from "@/components/groupTourPrices";
+
+export function Packages({ data: tripData = [] }) {
   const [isToggleDomestic, setIsToggleDomestic] = useState(true);
-  const [filtredTrip, setFiltredTrip] = useState(tripData);
-  useEffect(() => {
-    setIsLoading(true);
-    if (isToggleDomestic) {
-      setFiltredTrip(
-        tripData?.filter((trip) => {
-          return trip.isDomestic;
-        })
-      );
-    } else {
-      setFiltredTrip(
-        tripData?.filter((trip) => {
-          return !trip.isDomestic;
-        })
-      );
-    }
-    setIsLoading(false);
-  }, [isToggleDomestic]);
+  const filtredTrip = tripData.filter(trip => Boolean(trip.isDomestic) === isToggleDomestic);
   return (
     <div id="package" className=" py-16 md:py-20">
       <div className=" bg-white px-4 sm:px-6  ">
@@ -40,40 +24,43 @@ export function Packages({ data: tripData }) {
               )}
             ></div>
 
-            <p
-              onClick={() => setIsToggleDomestic((prev) => !prev)}
+            <button
+              type="button"
+              aria-pressed={isToggleDomestic}
+              onClick={() => setIsToggleDomestic(true)}
               className={cn(
                 "py-1.5 font-medium w-24 text-center bg-transparent z-10  px-3 cursor-pointer transition-colors duration-300",
                 isToggleDomestic ? "text-white" : "text-[#FD4C5C]"
               )}
             >
               Domestic
-            </p>
+            </button>
 
-            <p
-              onClick={() => setIsToggleDomestic((prev) => !prev)}
+            <button
+              type="button"
+              aria-pressed={!isToggleDomestic}
+              onClick={() => setIsToggleDomestic(false)}
               className={cn(
                 "py-1.5 font-medium w-24 text-center bg-transparent z-10  px-3 cursor-pointer transition-colors duration-300",
                 !isToggleDomestic ? "text-white" : "text-[#FD4C5C]"
               )}
             >
               Abroad
-            </p>
+            </button>
           </div>
 
           <div className=" mb-6"></div>
 
           <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-4">
-            {!isLoading &&
-              (filtredTrip?.length > 0 ? (
+            {filtredTrip.length > 0 ? (
                 filtredTrip?.map((item, idx) => {
                   return <PackageCard key={item.slug} {...item} idx={idx} />;
                 })
               ) : (
-                <p className=" text-center text-xl col-span-3 w-full text-gray-600">
+                <p className=" text-center text-xl col-span-full w-full text-gray-600">
                   No trip found
                 </p>
-              ))}
+              )}
           </div>
         </div>
       </div>
@@ -81,9 +68,33 @@ export function Packages({ data: tripData }) {
   );
 }
 
-function PackageCard({ title, bannerImage, price, dates, slug, idx }) {
+export function GroupTourPackages({ data = [] }) {
   return (
-    <Link href={`/trip?tripId=${slug}`}>
+    <section id="group-tour-packages" className="bg-orange-50 py-16 md:py-20 px-4 sm:px-6 scroll-mt-24">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl text-gray-700 font-extrabold md:text-5xl text-center md:font-medium">
+          Group Tour Package
+        </h2>
+        <p className="text-center text-gray-600 mt-4 mb-10">
+          Choose your room sharing option. All prices are per person.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.length ? data.map((item, idx) => (
+            <PackageCard key={item.slug} {...item} idx={idx} isGroupTour />
+          )) : (
+            <p className="col-span-full text-center text-gray-600">
+              Group tour packages will be available soon.
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PackageCard({ title, bannerImage, slug, idx, isGroupTour, sharingPrices }) {
+  return (
+    <Link href={`/${isGroupTour ? "group-trip" : "trip"}/${encodeURIComponent(slug)}`}>
 
       <motion.div
         initial={{ opacity: 0 }}
@@ -109,9 +120,7 @@ function PackageCard({ title, bannerImage, price, dates, slug, idx }) {
             <h3 className=" w-fit hover:underline text-2xl line-clamp-2 font-medium text-gray-100 mb-1">
               {title}
             </h3>
-            {/* <h3 className=" w-fit hover:underline  font-medium ">
-              Rs. {price}
-            </h3> */}
+            {isGroupTour && <GroupTourPrices sharingPrices={sharingPrices} compact />}
           </div>
         </div>
       </motion.div>

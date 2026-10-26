@@ -4,7 +4,7 @@ function HeroBG({ text, img = null }) {
       <div className=" w-full relative h-full">
         <div className=" w-full h-full absolute top-0 left-0 bg-black opacity-70 md:opacity-70"></div>
         <img
-          src={img || "./trip-hero-bg.jpg"}
+          src={img || "/trip-hero-bg.jpg"}
           alt="trip-hero-bg"
           className=" w-full h-full object-cover min-h-[50vh] md:min-h-[60vh]"
         />
@@ -13,7 +13,7 @@ function HeroBG({ text, img = null }) {
         {text}
       </p>
       <img
-        src="./trip-hero-bottom.png"
+        src="/trip-hero-bottom.png"
         className=" absolute bottom-0 left0"
         alt=""
       />

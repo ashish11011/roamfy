@@ -1,5 +1,6 @@
 import { db } from "../../lib/db";
-import { blogTable } from "../../db/schema";
+import { blogTable, groupTripTable, tripTable } from "../../db/schema";
+import { eq } from "drizzle-orm";
 
 const paths = ["", "/about-us", "/contact-us", "/blog"];
 
@@ -22,5 +23,29 @@ export default async function sitemap() {
     lastModified: new Date().toISOString(),
   }));
 
-  return [...pathEntries, ...blogEntries];
+  const tripData = await db
+    .select({ slug: tripTable.slug })
+    .from(tripTable)
+    .where(eq(tripTable.isVisible, true));
+
+  const tripEntries = tripData
+    .filter((trip) => trip.slug)
+    .map((trip) => ({
+      url: `${baseUrl}/trip/${encodeURIComponent(trip.slug)}`,
+      lastModified: new Date().toISOString(),
+    }));
+
+  const groupTripData = await db
+    .select({ slug: groupTripTable.slug })
+    .from(groupTripTable)
+    .where(eq(groupTripTable.isVisible, true));
+
+  const groupTripEntries = groupTripData
+    .filter(trip => trip.slug)
+    .map(trip => ({
+      url: `${baseUrl}/group-trip/${encodeURIComponent(trip.slug)}`,
+      lastModified: new Date().toISOString(),
+    }));
+
+  return [...pathEntries, ...blogEntries, ...tripEntries, ...groupTripEntries];
 }

@@ -3,13 +3,16 @@ import { HeadingDescription } from "./headingDescription";
 import { TravelPlan } from "./travelPlan";
 import TripContactFrom from "./tripContactForm";
 import Link from "next/link";
+import { GroupTourPrices } from "@/components/groupTourPrices";
 
-export function TripDetails({ tripData }) {
+export function TripDetails({ tripData, isGroupTour = false }) {
   return (
     <div className=" w-full max-w-7xl justify-between px-5 mx-auto flex flex-col md:flex-row gap-12">
       <div className="flex flex-col gap-6 ">
         <div className=" flex gap-4 w-full justify-between flex-col md:flex-row">
-          {tripData?.price && (
+          {isGroupTour ? (
+            <GroupTourPrices sharingPrices={tripData.sharingPrices} />
+          ) : tripData?.price && (
             <div className="flex flex-col items-start">
               <h1 className="text-2xl font-semibold mb-2 text-gray-700">Price</h1>
               <h2 className="text-3xl font-bold text-primary mb-2">
@@ -46,7 +49,7 @@ export function TripDetails({ tripData }) {
           }}
         />
       </div>
-      <TripContactFrom slug={tripData?.slug} />
+      <TripContactFrom slug={tripData?.slug} isGroupTour={isGroupTour} />
     </div>
   );
 }
