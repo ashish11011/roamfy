@@ -1,8 +1,6 @@
 import HeroBG from "@/conponents/tripHero";
-import { Mail, MapPin, PhoneIcon } from "lucide-react";
-import React from "react";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "./contactForm";
-import Link from "next/link";
 import { BUSINESS_ADDRESS } from "@/const/contact";
 
 export const metadata = {
@@ -35,52 +33,50 @@ export const metadata = {
   },
 };
 
-const Page = () => {
+export default function ContactPage() {
   return (
-    <div className=" space-y-8">
-      <HeroBG text="Contact Us" img={"./contact-us.jpg"} />
-      <Contacts />
-      <ContactForm />
-    </div>
-  );
-};
-
-export default Page;
-
-function Contacts() {
-  return (
-    <div className="w-full max-w-7xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <div className="h-full w-full items-center bg-[#f6efe6] px-6 py-12 rounded-2xl flex flex-col gap-4">
-        <div className=" bg-white p-4 rounded-full w-fit">
-          <PhoneIcon className="w-9 h-9" fill="#084d2b" stroke="#084d2b" />
+    <>
+      <HeroBG
+        text="Good trips start with a conversation."
+        eyebrow="Let’s talk travel"
+        img="/contact-us.jpg"
+      />
+      <div className="site-container site-section contact-grid">
+        <div>
+          <span className="site-eyebrow">We’d love to hear from you</span>
+          <h2 className="site-title">Where are you dreaming of going?</h2>
+          <p className="mt-5 text-sub">
+            A group getaway, a company retreat, or an escape for two. Tell us
+            what you have in mind and we’ll help bring it together.
+          </p>
+          <div className="mt-6">
+            <div className="contact-item">
+              <Phone size={22} />
+              <div>
+                <h3>Give us a call</h3>
+                <a href="tel:+918239002370">+91 8239002370</a>
+              </div>
+            </div>
+            <div className="contact-item">
+              <Mail size={22} />
+              <div>
+                <h3>Drop us a line</h3>
+                <a href="mailto:roamifyplanners@gmail.com">
+                  roamifyplanners@gmail.com
+                </a>
+              </div>
+            </div>
+            <div className="contact-item">
+              <MapPin size={22} />
+              <div>
+                <h3>Find us in Jaipur</h3>
+                <p>{BUSINESS_ADDRESS}</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <p className=" text-4xl font-semibold">Phone Number</p>
-        <div className=" space-y-2">
-          <Link href={"tel:+918239002370"} className=" text-lg">
-            +91 8239002370
-          </Link>
-          {/* <p className=" text-lg">+916239565852</p> */}
-        </div>
+        <ContactForm />
       </div>
-      <div className="h-full w-full items-center bg-[#f6efe6] px-6 py-12 rounded-2xl flex flex-col gap-4">
-        <div className=" bg-white p-4 rounded-full w-fit">
-          <Mail className="w-9 h-9" fill="#084d2b" stroke="white" />
-        </div>
-        <p className=" text-4xl font-semibold">Email Address</p>
-        <div className=" space-y-2">
-          <Link href={"mailto:roamifyplanners@gmail.com"} className=" text-lg">
-            roamifyplanners@gmail.com
-          </Link>
-          {/* <p className=" text-lg">email@gmail.com</p> */}
-        </div>
-      </div>
-      <div className="h-full w-full items-center bg-[#f6efe6] px-6 py-12 rounded-2xl flex flex-col gap-4">
-        <div className="bg-white p-4 rounded-full w-fit">
-          <MapPin className="w-9 h-9" stroke="#084d2b" />
-        </div>
-        <p className="text-4xl font-semibold">Address</p>
-        <p className="text-lg text-center">{BUSINESS_ADDRESS}</p>
-      </div>
-    </div>
+    </>
   );
 }

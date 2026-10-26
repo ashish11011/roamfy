@@ -1,53 +1,54 @@
-import Heading from "@/components/heading";
 import { MapPin, Star } from "lucide-react";
 import Image from "next/image";
+import { SectionHeading } from "@/components/site/sectionHeading";
 
-export function HotelSection({ hotelData }) {
+export function HotelSection({ hotelData = [] }) {
+  const hotels = hotelData.filter((hotel) => hotel.hotelName);
+  if (!hotels.length) return null;
   return (
-    <div className=" flex w-full max-w-7xl px-5 mx-auto flex-col space-y-3">
-      <Heading>Hotels</Heading>
-      <div className=" flex flex-wrap gap-8">
-        {hotelData?.map((item, idx) => {
-          return <HotelCard key={idx} item={item} />;
-        })}
+    <section className="site-container pb-12 md:pb-20">
+      <SectionHeading
+        eyebrow="Rest easy"
+        title="A good place to call it a day."
+        description="A look at the stays planned for your journey."
+      />
+      <div className="hotel-grid">
+        {hotels.map((hotel, index) => (
+          <article className="hotel-card" key={index}>
+            <Image
+              src={hotel.hotelImage || "/trip-hero-bg.jpg"}
+              alt={hotel.hotelName}
+              width={500}
+              height={350}
+            />
+            <div className="p-4">
+              <h3>{hotel.hotelName}</h3>
+              <div
+                className="flex gap-1 text-primary mb-3"
+                aria-label={`${hotel.hotelRating || 0} star hotel`}
+              >
+                {Array.from(
+                  {
+                    length: Math.max(
+                      0,
+                      Math.min(5, Number(hotel.hotelRating) || 0),
+                    ),
+                  },
+                  (_, i) => (
+                    <Star key={i} size={14} fill="currentColor" />
+                  ),
+                )}
+              </div>
+              {hotel.hotelLocation && (
+                <p className="text-sm text-sub flex items-center gap-2">
+                  <MapPin size={14} />
+                  {hotel.hotelLocation}
+                </p>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }
-
-const HotelCard = ({ item }) => {
-  if (!item.hotelName) {
-    return null;
-  }
-
-  console.log("|||", item.hotelRating, "|||");
-
-  return (
-    <div className=" w-full  sm:max-w-72 rounded-2xl overflow-hidden shadow-lg bg-white">
-      <Image
-        width={350}
-        height={350}
-        className="w-full h-48 md:h-44 object-cover"
-        src={item.hotelImage}
-        alt="Hotel"
-      />
-      <div className="p-4">
-        <div className="flex  flex-col mb-2">
-          <h2 className="text-xl font-semibold text-gray-800">
-            {item.hotelName}
-          </h2>
-          <div className="flex text-yellow-500">
-            {item.hotelRating &&
-              [...Array(Number(item.hotelRating))].map((_, i) => (
-                <Star key={i} size={16} fill="currentColor" stroke="none" />
-              ))}
-          </div>
-        </div>
-        {/* <div className="flex items-center text-sm text-gray-500 mb-3">
-          <MapPin className="w-4 h-4 mr-1" />
-          <span>{item.hotelLocation}</span>
-        </div> */}
-      </div>
-    </div>
-  );
-};

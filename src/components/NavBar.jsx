@@ -1,103 +1,101 @@
 "use client";
-import Footer from "@/conponents/Footer";
-import React, { useState } from "react";
-
-import * as motion from "motion/react-client";
+import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
+
+const links = [
+  { label: "Explore Trips", href: "/#package" },
+  { label: "Group Tours", href: "/#group-tour-packages" },
+  { label: "Travel Journal", href: "/blog" },
+  { label: "Our Story", href: "/about-us" },
+];
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const menuItems = [
-    { label: "Packages", href: "/#package" },
-    { label: "Group Tours", href: "/#group-tour-packages" },
-    { label: "Blogs", href: "/blog" },
-    { label: "Add Review", href: "/add-review" },
-    { label: "About Us", href: "/about-us" },
-  ];
-
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   return (
-    <header className="z-50 sticky w-full  top-0  py-3 md:py-3 bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-        {/* Logo */}
-        <Link href="/">
+    <header className="site-header">
+      <div className="site-utility">
+        <div className="site-container flex items-center justify-between gap-4">
+          <span className="utility-message">
+            Good places. Great company. Your next adventure starts here.
+          </span>
+          <a
+            href="tel:+918239002370"
+            className="inline-flex items-center gap-2 ml-auto"
+          >
+            <Phone size={12} />
+            +91 8239002370
+          </a>
+        </div>
+      </div>
+      <div className="site-container site-nav">
+        <Link
+          href="/"
+          aria-label="Roamify Planners home"
+          onClick={() => setOpen(false)}
+        >
           <img
             src="/logo-black.png"
-            className="h-12 md:h-16 w-auto"
-            alt="logo"
+            alt="Roamify Planners"
+            className="site-logo"
+            width="155"
+            height="93"
           />
         </Link>
-
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-4   rounded-full">
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <ShowDesktopLink item={item} />
-            </li>
+        <nav aria-label="Main navigation" className="site-nav-links">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={pathname === link.href ? "page" : undefined}
+            >
+              {link.label}
+            </Link>
           ))}
-        </ul>
-        <ContactUsBtn className={"hidden md:block"} />
-
-        {/* Mobile Menu Toggle */}
+        </nav>
+        <Link href="/contact-us" className="site-button desktop-contact">
+          Plan a trip <ArrowUpRight size={16} />
+        </Link>
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-black"
+          type="button"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          onClick={() => setOpen(!open)}
+          className="mobile-menu-button"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
-
-      {isOpen && (
-        <motion.ul
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden   mt-2 px-4 py-4 space-y-2 rounded-b-xl"
+      {open && (
+        <nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
+          className="site-container mobile-menu"
         >
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <Link
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="block px-4 py-2 rounded-full text-center hover:bg-orange-600 text-black hover:text-white transition font-medium"
-              >
-                {item.label}
-              </Link>
-            </li>
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+            >
+              {link.label}
+            </Link>
           ))}
-          <ContactUsBtn />
-        </motion.ul>
+          <Link href="/add-review" onClick={() => setOpen(false)}>
+            Share a review
+          </Link>
+          <Link
+            href="/contact-us"
+            className="site-button"
+            onClick={() => setOpen(false)}
+          >
+            Plan a trip <ArrowUpRight size={16} />
+          </Link>
+        </nav>
       )}
     </header>
-  );
-}
-
-function ShowDesktopLink({ item }) {
-  return (
-    <Link className=" !overflow-hidden group" href={item.href}>
-      <motion.p className=" group-hover:text-orange-600 duration-200  px-3 font-medium">
-        {item.label}
-      </motion.p>
-      <div className=" h-full w-full overflow-hidden">
-        <div className=" group-hover:translate-x-0 duration-200  -translate-x-[110%] w-full h-1 bg-orange-600"></div>
-      </div>
-    </Link>
-  );
-}
-
-function ContactUsBtn({ className }) {
-  return (
-    <Link href={"/contact-us"}>
-      <div
-        className={cn(
-          " py-2 px-4 text-center bg-orange-600 rounded text-white hover:text-orange-600 hover:ring-2 hover:bg-white font-semibold duration-200 ring-orange-600 cursor-pointer",
-          className
-        )}
-      >
-        Contact Us
-      </div>
-    </Link>
   );
 }

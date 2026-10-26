@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import HeroBG from "@/conponents/tripHero";
 import TravellerGallery from "./TravelGallary";
 import Link from "next/link";
+import { ArrowUpRight, Compass, Heart, Users } from "lucide-react";
+import { TravelBenefits } from "@/components/site/homeSections";
 
 export const metadata = {
   title: {
@@ -36,53 +36,47 @@ export const metadata = {
 
 export default function AboutUsSection() {
   return (
-    <section className="w-full ">
-      <HeroBG text="About Us" />
-
-      <div className=" py-20 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    <>
+      <HeroBG
+        text="For the places. For the people. For the memories."
+        eyebrow="Our story"
+        img="/hero3.jpg"
+      />
+      <div className="site-container site-section planning-grid">
         <div>
-          <p className="text-sm text-gray-500 mb-2">About Us</p>
-          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight">
-            Curating Memorable Trips <br /> Across India & Beyond
+          <span className="site-eyebrow">Hello, we’re Roamify</span>
+          <h2 className="site-title">
+            A little curiosity can take you a long way.
           </h2>
-          <p className="mt-6 text-lg text-gray-600 max-w-xl">
-            At Roamify Planners, we specialize in crafting unforgettable group
-            tours for colleges, schools, corporates, and honeymooners. From
-            transport and hotels to sightseeing and special events—we take care
-            of everything so you can just pack and go!
+          <p className="mt-6 text-sub">
+            At Roamify Planners, we bring people and places together through
+            thoughtfully planned trips. From corporate retreats and college
+            adventures to school excursions and honeymoons, we make room for the
+            things that make travel special.
           </p>
-
-          <Link
-            href={"/contact-us"}
-            className="mt-8 inline-flex items-center px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition"
-          >
-            Contact Us <ArrowRight className="ml-2 h-4 w-4" />
+          <p className="mt-4 text-sub">
+            The stays, the transport, the sightseeing, the little details. We
+            take care of the plan, so you can be there for the experience.
+          </p>
+          <Link href="/contact-us" className="site-button mt-8">
+            Let’s plan something memorable <ArrowUpRight size={18} />
           </Link>
         </div>
-
-        {/* Right Images */}
-        <div className="flex space-x-4 justify-center">
-          <div className="w-1/2">
-            <Image
-              src="/about-us-1.jpeg"
-              alt="Traveler with backpack"
-              width={500}
-              height={600}
-              className="rounded-xl object-cover w-full h-full"
-            />
-          </div>
-          <div className="w-1/2">
-            <Image
-              src="/about-us-2.png"
-              alt="Woman in yellow dress on island"
-              width={500}
-              height={600}
-              className="rounded-xl object-cover w-full h-full"
-            />
-          </div>
+        <div className="grid grid-cols-2 gap-4 items-center">
+          <img
+            src="/about-us-1.jpeg"
+            alt="A traveller discovering a new destination"
+            className="rounded-[24px] h-80 md:h-[460px] w-full object-cover"
+          />
+          <img
+            src="/about-us-2.png"
+            alt="Taking in the view on an island escape"
+            className="rounded-[24px] h-64 md:h-96 w-full object-cover mt-16"
+          />
         </div>
       </div>
+      <TravelBenefits />
       <TravellerGallery />
-    </section>
+    </>
   );
 }

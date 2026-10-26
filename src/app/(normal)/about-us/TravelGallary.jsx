@@ -17,31 +17,30 @@ const galleryImages = [
 
 export default function TravellerGallery() {
   return (
-    <section className="w-full px-4 py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight">
-            Memories from Our Journeys
-          </h2>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Glimpse into the unforgettable moments we've curated across college
-            tours, corporate retreats, school excursions, and romantic getaways.
-            Every photo tells a story of seamless planning and joyful travel.
-          </p>
+    <section className="site-section bg-cream">
+      <div className="site-container">
+        <div className="section-heading">
+          <div>
+            <span className="site-eyebrow">The moments in between</span>
+            <h2 className="site-title">This is what memories look like.</h2>
+            <p>
+              A glimpse of our journeys, the people we meet, and the stories we
+              bring home.
+            </p>
+          </div>
         </div>
-
-        {/* Image Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3  gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {galleryImages.map((src, index) => (
             <div
-              key={index}
-              className="relative w-full h-72 overflow-hidden rounded-xl"
+              className={`relative overflow-hidden rounded-[24px] ${index % 3 === 1 ? "h-56 md:h-96" : "h-56 md:h-80"}`}
+              key={src}
             >
               <Image
                 src={src}
-                alt={`Traveller experience ${index + 1}`}
+                alt={`A memory from a Roamify trip, photo ${index + 1}`}
                 fill
-                className="object-cover hover:scale-105 transition-transform duration-300"
+                // sizes="(max-width: 767px) 50vw, 33vw"
+                className="object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
           ))}

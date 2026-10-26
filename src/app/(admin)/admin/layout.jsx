@@ -4,9 +4,11 @@ import { NavBarAdmin } from "@/conponents/admin/navBar";
 export default function AdminLayout({ children }) {
   return (
     <SessionWrapper>
-      <div className="p-4 flex flex-col gap-6 max-w-7xl mx-auto">
-        <NavBarAdmin />
-        {children}
+      <div className="admin-shell">
+        <div className="site-container">
+          <NavBarAdmin />
+          <main className="admin-content">{children}</main>
+        </div>
       </div>
     </SessionWrapper>
   );

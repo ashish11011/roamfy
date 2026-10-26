@@ -1,19 +1,31 @@
+import { ArrowUpRight, LoaderCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-function SubmitButton({ className, onClick = () => {}, loading = false }) {
+export default function SubmitButton({
+  className,
+  onClick,
+  loading = false,
+  children = "Send message",
+  type = "button",
+}) {
   return (
     <button
+      type={type}
       onClick={onClick}
       disabled={loading}
-      className={cn(
-        " w-full font-semibold text-lg cursor-pointer text-center py-2 px-4 rounded-full bg-primary  hover:!bg-orange-700 duration-200 text-white",
-        className,
-        loading && " opacity-50 cursor-not-allowed"
-      )}
+      className={cn("site-button", className)}
     >
-      Send Message
+      {loading ? (
+        <>
+          <LoaderCircle size={16} className="animate-spin" />
+          Sending…
+        </>
+      ) : (
+        <>
+          {children}
+          <ArrowUpRight size={16} />
+        </>
+      )}
     </button>
   );
 }
-
-export default SubmitButton;

@@ -1,48 +1,38 @@
 import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc"; // required to handle 'Z' (UTC)
-// import timezone from "dayjs/plugin/timezone"; // optional, for timezone support
-
-dayjs.extend(utc);
-// dayjs.extend(timezone);
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
-const BlogCard = ({ image, date, heading, description, blogLink }) => {
+export default function BlogCard({
+  image,
+  date,
+  heading,
+  description,
+  blogLink,
+}) {
+  const parsedDate = dayjs(
+    typeof date === "string" ? date.replace(/[\'"]/g, "") : date,
+  );
   return (
-    <div className="bg-[#e8f3ee] h-full rounded-2xl p-4 sm:p-6 w-full space-y-6  shadow-md">
-      <div className="relative sm:w-auto w-full h-auto sm:h-60 rounded-2xl overflow-hidden">
-        <img
-          src={image}
-          alt={heading}
-          className=" w-full h-full object-cover"
-        />
-        <div className="absolute top-3 right-3 bg-white text-black text-sm font-semibold px-3 py-1 rounded-full shadow">
-          {dayjs(typeof date === 'string' ? date.replace(/['"]/g, '') : date).format("D/M/YYYY")}
-        </div>
-      </div>
-      <Link href={blogLink} className="text-3xl font-medium">
-        {heading}
-      </Link>
-      <p className="text-lg line-clamp-3 text-gray-600 mt-3 mb-4">
-        {description}
-      </p>
+    <article className="journal-card">
       <Link
         href={blogLink}
-        className="inline-flex gap-3 group items-center bg-green-950   transition-all hover:bg-green-900 duration-200 text-white text-lg font-medium px-6 py-3 rounded-full"
+        className="journal-image"
+        aria-label={`Read ${heading}`}
       >
-        Read More
-        <ArrowRightIcon
-          color="white"
-          className=" group-hover:-rotate-45 duration-200"
-        />
+        <img src={image || "/blog-bg.jpg"} alt={heading} loading="lazy" />
       </Link>
-    </div>
+      {date && parsedDate.isValid() && (
+        <time dateTime={parsedDate.format("YYYY-MM-DD")}>
+          {parsedDate.format("D MMMM YYYY")}
+        </time>
+      )}
+      <h3>
+        <Link href={blogLink}>{heading}</Link>
+      </h3>
+      <p className="line-clamp-3">{description}</p>
+      <Link href={blogLink} className="site-text-link mt-auto">
+        Read the story <ArrowUpRight size={18} />
+      </Link>
+    </article>
   );
-};
-
-export default BlogCard;
-
-function formatDateToDDMMYYYY(isoDateStr) {
-  const date = dayjs.utc(JSON.parse(isoDateStr));
-  return date.format("DD/MM/YYYY");
 }

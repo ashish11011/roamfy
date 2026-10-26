@@ -1,76 +1,75 @@
 "use client";
-
 import { useState } from "react";
-const { insertSubscription } = require("lib");
+import { insertSubscription } from "lib";
+import { ArrowUpRight } from "lucide-react";
 
-function SubscribeNewsletter() {
+export default function SubscribeNewsletter() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
+  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-
-  async function handleSubmit() {
-    if (!email) return;
+  async function submit(event) {
+    event.preventDefault();
     setLoading(true);
-    setSuccess("");
+    setMessage("");
     setError("");
     try {
       await insertSubscription(email);
-      setSuccess("Thanks for subscribing!");
+      setMessage("You’re on the list. Here’s to your next adventure!");
       setEmail("");
-    } catch (err) {
-      console.error("Subscription failed:", err);
-      setError("Subscription failed. Please try again.");
+    } catch {
+      setError("We couldn’t subscribe you. Please try again.");
     } finally {
       setLoading(false);
     }
   }
-
   return (
-    <div className="w-full max-w-7xl py-12 mx-auto px-4">
-      <div
-        className="rounded-2xl flex items-center justify-center px-4 h-96"
-        style={{
-          backgroundImage: "url('./newsletter.jpg')",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-      >
-        <div className="-translate-y-12 xl:translate-x-24 flex flex-col items-center">
-          <p className="text-white text-center font-bold max-w-lg w-full text-3xl md:text-4xl">
-            Subscribe newsletter & get company news.
+    <section className="site-container pb-12 md:pb-20">
+      <div className="newsletter-panel">
+        <div>
+          <span className="site-eyebrow">A little wanderlust, delivered</span>
+          <h2 className="site-title">Postcards for your inbox.</h2>
+          <p className="text-sub text-sm mt-4">
+            Fresh travel inspiration and Roamify updates, ready when you are.
           </p>
-
-          <div className="bg-white py-1 px-1 justify-between w-full max-w-sm flex gap-2 rounded mt-6">
+        </div>
+        <div>
+          <form onSubmit={submit} className="newsletter-form">
+            <label className="sr-only" htmlFor="newsletter-email">
+              Email address for newsletter
+            </label>
             <input
-              type="text"
-              placeholder="Enter your email"
+              id="newsletter-email"
+              type="email"
+              autoComplete="email"
+              placeholder="Your email address"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
+              required
               disabled={loading}
-              className="pl-6 outline-none w-[60%] disabled:bg-gray-100"
             />
-            <button
-              onClick={handleSubmit}
-              disabled={loading}
-              className={`py-3 px-6 rounded-sm text-white ${
-                loading
-                  ? "bg-[#FF6B35]/50 cursor-not-allowed"
-                  : "bg-[#FF6B35] hover:bg-[#e65c2f]"
-              }`}
-            >
-              {loading ? "Subscribing..." : "Subscribe"}
+            <button className="site-button shrink-0" disabled={loading}>
+              {loading ? (
+                "Joining…"
+              ) : (
+                <>
+                  Count me in <ArrowUpRight size={16} />
+                </>
+              )}
             </button>
-          </div>
-
-          {success && (
-            <p className="text-green-100 mt-4 font-medium">{success}</p>
+          </form>
+          {message && (
+            <p role="status" className="text-sm text-green-700 mt-3">
+              {message}
+            </p>
           )}
-          {error && <p className="text-red-200 mt-4 font-medium">{error}</p>}
+          {error && (
+            <p role="alert" className="text-sm text-red-700 mt-3">
+              {error}
+            </p>
+          )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
-
-export default SubscribeNewsletter;

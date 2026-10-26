@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import HeroBG from "@/conponents/tripHero";
 import { notFound } from "next/navigation";
 import { getTripBySlug } from "../../../../../lib/tripHelper";
@@ -13,13 +15,16 @@ const Page = async ({ params }) => {
   }
 
   return (
-    <div className=" text-gray-900 tracking-wide leading-7 w-full space-y-16">
-      <HeroBG text={tripData.title} />
+    <div className="trip-page">
+      <HeroBG
+        text={tripData.title}
+        img={tripData.bannerImage}
+        eyebrow="Your next adventure"
+      />
       <TripDetails tripData={tripData} />
       {tripData.hotels?.length > 0 && (
         <HotelSection hotelData={tripData.hotels} />
       )}
-      <div className=" h-10"></div>
     </div>
   );
 };

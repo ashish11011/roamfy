@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import RedirectHome from "@/conponents/RedirectHome";
 import { permanentRedirect } from "next/navigation";
 

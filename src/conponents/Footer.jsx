@@ -1,121 +1,110 @@
-import { Facebook, Instagram } from "lucide-react";
+import { ArrowUpRight, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import { BUSINESS_ADDRESS } from "@/const/contact";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    // <footer className="bg-cover relative bg-center text-white py-10 px-6">
-    <div
-      className=" w-full h-full relative min-h-96 pt-24 px-4 pb-4"
-      style={{
-        backgroundImage: "url('/footer-bg.png')",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "bottom",
-      }}
-    >
-      <img
-        src="/footer-top.png"
-        className=" z-10 absolute top-0 left-0"
-        alt=""
-      />
-      <div className=" text-white w-full top-20 left-0  !z-50">
-        <div className=" w-full pb-6 max-w-7xl mx-auto flex justify-between gap-4 items-center">
-          <Link href="/">
-            <img
-              src="/logo-white.png"
-              className="h-12 md:h-16 w-auto"
-              alt="logo"
-            />
+    <footer className="site-footer">
+      <div className="site-container">
+        <div className="footer-top">
+          <div>
+            <span className="text-xs uppercase tracking-[.15em] text-white/60">
+              There’s a whole world out there.
+            </span>
+            <h2 className="text-3xl md:text-4xl font-medium tracking-tight mt-2">
+              Let’s find your next adventure.
+            </h2>
+          </div>
+          <Link href="/contact-us" className="site-button">
+            Let’s talk travel <ArrowUpRight size={18} />
           </Link>
-          <div className="flex justify-end gap-3 mt-6 mb-2">
-            {[Instagram, Facebook].map((Icon, idx) => (
-              <div
-                key={idx}
-                className="w-10 h-10 cursor-pointer flex items-center justify-center rounded-full border border-white text-sm hover:bg-white hover:text-black transition"
-              >
-                <Icon />
-              </div>
-            ))}
-          </div>
         </div>
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row flex-wrap justify-between gap-6 md:gap-8 pb-10">
-          <div className=" md:text-lg">
-            <h3 className="font-semibold mb-3 md:mb-6 text-2xl">Address</h3>
-            <p className="max-w-sm">{BUSINESS_ADDRESS}</p>
+        <div className="footer-grid">
+          <div>
+            <Link href="/" aria-label="Roamify Planners home">
+              <img
+                src="/logo-white.png"
+                alt="Roamify Planners"
+                className="w-36 h-auto mb-4"
+                loading="lazy"
+              />
+            </Link>
+            <p className="max-w-xs mb-6">
+              Thoughtfully planned journeys. Beautiful places. Memories that
+              stay with you.
+            </p>
+            <h3>Find us in Jaipur</h3>
+            <p className="max-w-xs">{BUSINESS_ADDRESS}</p>
           </div>
-
-          <div className=" md:text-lg">
-            <h3 className="font-semibold mb-3 md:mb-6 text-2xl">Quick Links</h3>
-            <ul className="space-y-1">
+          <div>
+            <h3>Go explore</h3>
+            <ul>
               <li>
-                <Link href="/" className="hover:underline">
-                  Home
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/about-us" className="hover:underline">
-                  About Us
-                </Link>
+                <Link href="/#package">Our trips</Link>
               </li>
               <li>
-                <Link href="/add-review" className="hover:underline">
-                  Add Review
-                </Link>
+                <Link href="/#group-tour-packages">Group tour packages</Link>
+              </li>
+              <li>
+                <Link href="/about-us">Our story</Link>
+              </li>
+              <li>
+                <Link href="/blog">Travel journal</Link>
+              </li>
+              <li>
+                <Link href="/add-review">Share your experience</Link>
               </li>
             </ul>
           </div>
-
-          <div className=" flex flex-col gap-4 md:text-lg">
-            <Link href={"/contact-us"} className="font-semibold  text-2xl">
-              Contact Us
-            </Link>
-
-            <Link href={"tel:+918239002370"} className="">
-              +91 8239002370
-            </Link>
-            <Link href={"mailto:roamifyplanners@gmail.com"}>
-              roamifyplanners@gmail.com
-            </Link>
-          </div>
-
-          <div className=" md:text-lg">
-            <h3 className="font-semibold mb-3 md:mb-6 text-2xl">
-              Utility Pages
-            </h3>
-            <ul className="space-y-1">
+          <div>
+            <h3>The useful details</h3>
+            <ul>
               <li>
-                <Link href="/blog" className="hover:underline">
-                  Blogs
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/privacy-policy" className="hover:underline">
-                  Privacy Policy
-                </Link>
+                <Link href="/privacy-policy">Privacy policy</Link>
               </li>
               <li>
-                <Link href="/terms-conditions" className="hover:underline">
-                  Terms and Conditions
-                </Link>
+                <Link href="/terms-conditions">Terms and conditions</Link>
               </li>
               <li>
-                <Link href="/refund-policy" className="hover:underline">
-                  Refund Policy
-                </Link>
+                <Link href="/refund-policy">Refund policy</Link>
+              </li>
+              <li>
+                <Link href="/contact-us">Contact us</Link>
               </li>
             </ul>
           </div>
+          <div>
+            <h3>A conversation away</h3>
+            <ul>
+              <li>
+                <a
+                  href="tel:+918239002370"
+                  className="inline-flex items-center gap-2"
+                >
+                  <Phone size={14} />
+                  +91 8239002370
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:roamifyplanners@gmail.com"
+                  className="inline-flex items-start gap-2 break-all"
+                >
+                  <Mail size={14} className="shrink-0 mt-1" />
+                  roamifyplanners@gmail.com
+                </a>
+              </li>
+            </ul>
+            <p className="mt-6">
+              Tell us where you’re dreaming of going. We’ll help with the rest.
+            </p>
+          </div>
         </div>
-
-        <div className="text-center mt-4 text-sm border-t border-gray-400 pt-4">
-          Copyright © Roamify Planners
+        <div className="footer-bottom">
+          <p>Copyright © Roamify Planners</p>
+          <p>Made for the memories.</p>
         </div>
       </div>
-    </div>
+    </footer>
   );
-};
-
-export default Footer;
+}

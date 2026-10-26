@@ -85,6 +85,25 @@ export const TripForm = ({ tripData, isGroupTour = false }) => {
           setCTripDetails({ ...cTripDetails, title: e.target.value })
         }
       />
+      <div className="space-y-2">
+        <Input
+          title="Slug (optional)"
+          placeholder="e.g. manali-family-holiday"
+          value={cTripDetails.slug}
+          onChange={(e) =>
+            setCTripDetails({ ...cTripDetails, slug: e.target.value })
+          }
+          aria-describedby="trip-slug-help"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
+        />
+        <p id="trip-slug-help" className="text-sm text-gray-600">
+          Leave blank to generate from the title. Use letters, numbers and hyphens.
+          {" "}URL: /{isGroupTour ? "group-trip" : "trip"}/your-slug
+          {!cTripDetails.isNew && " — Changing the slug changes this trip’s URL."}
+        </p>
+      </div>
       {isGroupTour ? (
         <fieldset className="rounded-lg border p-4 space-y-4" disabled={isLoading}>
           <legend className="px-2 font-semibold">Sharing prices</legend>

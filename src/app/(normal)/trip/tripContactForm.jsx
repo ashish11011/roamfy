@@ -1,116 +1,94 @@
 "use client";
+import { useState } from "react";
 import Input from "@/conponents/input";
 import Textarea from "@/conponents/textArea";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
+import SubmitButton from "@/conponents/submitButton";
 import { insertContactDetail } from "lib";
 
-function TripContactFrom({ slug, isGroupTour = false }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [message, setMessage] = useState("");
-  const [resMessage, setResMessage] = useState("");
-
+export default function TripContactFrom({ slug, isGroupTour = false }) {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    address: "",
+    mobile: "",
+    message: "",
+  });
   const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e) => {
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const update = (key) => (event) =>
+    setForm((prev) => ({ ...prev, [key]: event.target.value }));
+  async function submit(event) {
+    event.preventDefault();
     setLoading(true);
+    setMessage("");
+    setError("");
     try {
-      await insertContactDetail({
-        name,
-        email,
-        address,
-        mobile,
-        message,
-        slug,
-      });
-
-      setResMessage("Form Submitted Successfully");
-    } catch (error) {
-      console.log(error);
-      setResMessage("Form Submit Failed, Please Try Again");
+      if (!(await insertContactDetail({ ...form, slug }))) throw new Error();
+      setMessage("Your enquiry is on its way. We’ll be in touch soon.");
+      setForm({ name: "", email: "", address: "", mobile: "", message: "" });
+    } catch {
+      setError("We couldn’t send your enquiry. Please try again.");
     } finally {
-      setName("");
-      setEmail("");
-      setAddress("");
-      setMobile("");
-      setMessage("");
+      setLoading(false);
     }
-
-    setLoading(false);
-  };
+  }
   return (
-    <div className=" relative py-6 px-4 md:px-6 rounded-2xl h-fit bg-green-50 ring-2 ring-green-700/20 w-full md:max-w-sm flex flex-col gap-4">
-      <h3 className=" text-3xl text-center font-medium">
-        {isGroupTour ? "Book Your Group Tour" : "Book Your Trip"}
-      </h3>
-      <p className=" text-center text-gray-600">
-        Travel is less about destination and more about memories made along the
-        way.
-      </p>
+    <form className="trip-enquiry" onSubmit={submit}>
+      <span className="site-eyebrow mb-0">Let’s make it happen</span>
+      <h2>{isGroupTour ? "Book your group tour" : "Make this trip yours."}</h2>
+      <p>Leave your details and we’ll help you plan the next step.</p>
       <Input
-        title={"Name"}
-        placeholder="Enter full name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        title="Your name"
+        placeholder="Full name"
+        value={form.name}
+        onChange={update("name")}
+        required
+        autoComplete="name"
       />
       <Input
-        title={"Email"}
-        placeholder="Enter Your Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        title="Email address"
+        placeholder="you@example.com"
+        type="email"
+        value={form.email}
+        onChange={update("email")}
+        required
+        autoComplete="email"
       />
       <Input
-        title={"Address"}
-        placeholder="Enter Your Address"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
+        title="Phone number"
+        placeholder="Your contact number"
+        type="tel"
+        value={form.mobile}
+        onChange={update("mobile")}
+        required
+        autoComplete="tel"
       />
       <Input
-        title={"Mobile"}
-        placeholder="Enter Your Mobile Number"
-        value={mobile}
-        onChange={(e) => setMobile(e.target.value)}
+        title="Your city"
+        placeholder="Where are you based?"
+        value={form.address}
+        onChange={update("address")}
       />
-
       <Textarea
-        title="Message"
-        placeholder="Enter Your Message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        title="Anything you have in mind?"
+        placeholder="Dates, group size, or a question for us…"
+        value={form.message}
+        onChange={update("message")}
       />
-      {resMessage && (
-        <p className=" text-center text-green-600 font-semibold">
-          {resMessage}
+      <SubmitButton type="submit" loading={loading} className="w-full">
+        Enquire about this trip
+      </SubmitButton>
+      {message && (
+        <p role="status" className="text-sm text-green-700">
+          {message}
         </p>
       )}
-      <SubmitButton onClick={handleSubmit} loading={loading} />
-      <input
-        type="text"
-        className="opacity-0 absolute"
-        name="slug"
-        onChange={(e) => {}}
-        value={slug ?? ""}
-      />
-    </div>
-  );
-}
-
-export default TripContactFrom;
-
-function SubmitButton({ onClick, loading }) {
-  return (
-    <button
-      onClick={onClick}
-      disabled={loading}
-      className={cn(
-        " w-full font-semibold text-lg cursor-pointer text-center py-2 px-4 rounded-full bg-primary  hover:!bg-orange-700 duration-200 text-white",
-        loading && " opacity-50 cursor-not-allowed"
+      {error && (
+        <p role="alert" className="text-sm text-red-700">
+          {error}
+        </p>
       )}
-    >
-      Send Message
-    </button>
+    </form>
   );
 }

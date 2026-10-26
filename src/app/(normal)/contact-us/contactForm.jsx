@@ -1,96 +1,107 @@
 "use client";
-
+import { useState } from "react";
 import { insertContactDetail } from "lib";
-import { useEffect, useState } from "react";
+import Input from "@/conponents/input";
+import Textarea from "@/conponents/textArea";
+import SubmitButton from "@/conponents/submitButton";
 
-const { default: Input } = require("@/conponents/input");
-const { default: SubmitButton } = require("@/conponents/submitButton");
-const { default: Textarea } = require("@/conponents/textArea");
-
-export const ContactForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [message, setMessage] = useState("");
+export function ContactForm() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    address: "",
+    mobile: "",
+    message: "",
+  });
   const [loading, setLoading] = useState(false);
-
-  async function handleSubmit() {
+  const [notification, setNotification] = useState("");
+  const [error, setError] = useState("");
+  const update = (key) => (event) =>
+    setForm((prev) => ({ ...prev, [key]: event.target.value }));
+  async function handleSubmit(event) {
+    event.preventDefault();
     setLoading(true);
-    const res = await insertContactDetail({
-      name,
-      email,
-      address,
-      mobile,
-      message,
-    });
-
-    setName("");
-    setEmail("");
-    setAddress("");
-    setMobile("");
-    setMessage("");
-
-    if (!res) alert("Form Submit Failed, Please Try Again");
-    setLoading(false);
+    setError("");
+    setNotification("");
+    try {
+      if (!(await insertContactDetail(form))) throw new Error();
+      setNotification(
+        "Thanks for reaching out. We’ll be in touch to plan your journey.",
+      );
+      setForm({ name: "", email: "", address: "", mobile: "", message: "" });
+    } catch {
+      setError(
+        "We couldn’t send your message. Please try again or give us a call.",
+      );
+    } finally {
+      setLoading(false);
+    }
   }
   return (
-    <div className=" px-6 py-12 w-full">
-      <div className=" max-w-5xl mx-auto w-full shadow-md py-10 border border-gray-100 px-12 flex flex-col">
-        <h3 className=" text-lg text-emerald-600 italic mb-2 font-medium text-center">
-          Contact Us
-        </h3>
-        <h2 className="mb-6 capitalize text-center text-5xl font-medium font-playfair">
-          get in touch
+    <form className="site-panel space-y-6" onSubmit={handleSubmit}>
+      <div>
+        <h2 className="text-2xl font-medium tracking-tight">
+          Tell us about your next escape.
         </h2>
-        <p className=" text-center mb-12 text-gray-600">
-          We are at your door disposal 7 days a week
+        <p className="text-sm text-sub mt-2">
+          Leave a few details. We’ll take it from here.
         </p>
-        <div className=" flex flex-col gap-4 w-full">
-          <div className=" flex flex-col md:flex-row gap-6 items-center">
-            <Input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              title={"Name"}
-              placeholder="Enter full name"
-            />
-            <Input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              title={"Email"}
-              placeholder="Email"
-            />
-          </div>
-          <div className=" flex flex-col md:flex-row gap-6 items-center">
-            <Input
-              value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
-              title={"Phone"}
-              placeholder="Enter your phone number"
-            />
-            <Input
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              title={"Location"}
-              placeholder="Enter your location"
-            />
-          </div>
-          <Textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            title={"Message"}
-            placeholder="Message"
-          />
-
-          <div className=" mt-4 w-full">
-            <SubmitButton
-              onClick={handleSubmit}
-              loading={loading}
-              className=" ml-auto w-fit"
-            />
-          </div>
-        </div>
       </div>
-    </div>
+      <div className="grid sm:grid-cols-2 gap-5">
+        <Input
+          title="Your name"
+          placeholder="Full name"
+          autoComplete="name"
+          required
+          value={form.name}
+          onChange={update("name")}
+        />
+        <Input
+          title="Email address"
+          placeholder="you@example.com"
+          type="email"
+          autoComplete="email"
+          required
+          value={form.email}
+          onChange={update("email")}
+        />
+        <Input
+          title="Phone number"
+          placeholder="Your contact number"
+          type="tel"
+          autoComplete="tel"
+          required
+          value={form.mobile}
+          onChange={update("mobile")}
+        />
+        <Input
+          title="Where are you based?"
+          placeholder="Your city"
+          autoComplete="address-level2"
+          value={form.address}
+          onChange={update("address")}
+        />
+      </div>
+      <Textarea
+        title="What’s the plan?"
+        placeholder="Destination, dates, group size, or anything you’d love to include…"
+        required
+        value={form.message}
+        onChange={update("message")}
+      />
+      <SubmitButton type="submit" loading={loading}>
+        Let’s plan a trip
+      </SubmitButton>
+      {notification && (
+        <p role="status" className="text-sm text-green-700">
+          {notification}
+        </p>
+      )}
+      {error && (
+        <p role="alert" className="text-sm text-red-700">
+          {error}
+        </p>
+      )}
+    </form>
   );
-};
+}

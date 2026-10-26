@@ -28,6 +28,7 @@ import TextAlign from "@tiptap/extension-text-align";
 import { Toggle } from "@/components/ui/toggle";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Input from "@/conponents/input";
 import Textarea from "@/conponents/textArea";
 import { SelectBlogCategories } from "@/conponents/admin/selectBlogCategories";
@@ -40,7 +41,10 @@ import { blogUser } from "@/const/blogConst";
 import { UploadImage } from "@/components/bannerImage";
 
 const TiptapEditor = ({ data }) => {
+  const router = useRouter();
   const [title, setTitle] = useState(data?.title || "");
+  const [slug, setSlug] = useState(data?.slug || "");
+  const [error, setError] = useState("");
   const [metaDescription, setMetaDescription] = useState(
     data?.metaDescription || ""
   );
@@ -90,52 +94,51 @@ const TiptapEditor = ({ data }) => {
   const [savedHtml, setSavedHtml] = useState("");
 
   const handleSave = async () => {
+    if (!editor || loading) return;
+    setError("");
     setLoading(true);
-    if (editor) {
+    try {
       const html = editor.getHTML();
       setSavedHtml(html);
-
-      if (data?.slug) {
+      const details = {
+        title,
+        slug,
+        metaDescription,
+        blogCategory,
+        image: imageLink,
+        tags: tagList,
+        date: blogDate,
+        data: html,
+        userImage: user?.image,
+        userName: user?.name,
+      };
+      if (data?.id) {
         const response = await updateBlogByID({
-          title,
-          metaDescription,
-          blogCategory,
-          image: imageLink,
-          tags: tagList,
-          date: blogDate,
-          data: html,
-          userImage: user.image,
-          userName: user.name,
-          slug: data?.slug,
+          ...details,
+          id: data.id,
         });
-        if (response) {
-          toast("blog Sved.");
-        } else {
-          toast("ERROR");
-        }
+        if (!response?.length) throw new Error("Unable to save the blog.");
+        setSlug(response[0].slug);
+        toast("Blog saved.");
+        router.replace(`/admin/blogs/${encodeURIComponent(response[0].slug)}`);
+        router.refresh();
       } else {
-        const response = await insertBlog({
-          title,
-          metaDescription,
-          blogCategory,
-          image: imageLink,
-          tags: tagList,
-          date: blogDate,
-          data: html,
-          userImage: user.image,
-          userName: user.name,
-        });
+        const response = await insertBlog(details);
         showNoti(response);
       }
+    } catch (error) {
+      setError(error.message || "Unable to save. Please try again.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   function showNoti(response) {
     if (response) {
-      toast("blog Sved.");
+      toast("Blog saved.");
 
       setTitle("");
+      setSlug("");
       setMetaDescription("");
       setBlogCategory("");
       setImageLink("");
@@ -162,6 +165,24 @@ const TiptapEditor = ({ data }) => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
+      <div className="mb-4 space-y-2">
+        <Input
+          title="Slug (optional)"
+          placeholder="e.g. family-holiday-in-manali"
+          value={slug}
+          onChange={(e) => setSlug(e.target.value)}
+          aria-describedby="blog-slug-help"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
+        />
+        <p id="blog-slug-help" className="text-sm text-gray-600">
+          Leave blank to generate from the title. Use letters, numbers and hyphens.
+          {" "}URL: /blog/your-slug
+          {data?.id && " — Changing the slug changes this blog’s URL."}
+        </p>
+      </div>
+      {error && <p role="alert" className="mb-4 text-red-700">{error}</p>}
       <div className="mb-3 flex gap-4">
         <UploadImage image={imageLink} setImage={setImageLink} />
         <InputTagList value={tagList} setList={setTagList} />
@@ -328,10 +349,10 @@ const TiptapEditor = ({ data }) => {
       </div>
 
       <Button
-        //  disabled={loading}
+        disabled={loading}
         onClick={handleSave}
       >
-        Save
+        {loading ? "Saving…" : "Save"}
       </Button>
 
       {savedHtml && (

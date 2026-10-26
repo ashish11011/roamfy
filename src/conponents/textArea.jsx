@@ -1,16 +1,21 @@
-function Textarea({ title, placeholder, value, onChange }) {
+export default function Textarea({
+  title,
+  placeholder,
+  value,
+  onChange,
+  ...props
+}) {
   return (
-    <div className=" w-full flex flex-col gap-1.5">
-      <p className=" font-medium">{title}</p>
+    <label className="site-field">
+      <span>{title}</span>
       <textarea
         placeholder={placeholder}
         value={value}
         rows={4}
         onChange={onChange}
-        className="border py-1.5 px-2 bg-white rounded-md "
+        className="site-input"
+        {...props}
       />
-    </div>
+    </label>
   );
 }
-
-export default Textarea;

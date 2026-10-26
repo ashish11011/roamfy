@@ -1,95 +1,78 @@
 "use client";
-
-import {
-  Facebook,
-  FacebookIcon,
-  Linkedin,
-  LinkedinIcon,
-  Twitter,
-  XIcon,
-} from "lucide-react";
+import { Facebook, Linkedin, Twitter } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export const TableOfContents = ({ slug }) => {
-  const [activeId, setActiveId] = useState(null);
+export function TableOfContents({ slug }) {
   const [headings, setHeadings] = useState([]);
-
   useEffect(() => {
-    const content = document.querySelector(".tiptap");
-    if (!content) return;
-
-    const headingElements = Array.from(content.querySelectorAll("h1, h2, h3"));
-
-    const extractedHeadings = headingElements.map((heading) => {
-      const id =
-        heading.id || heading.innerText.toLowerCase().replace(/\s+/g, "-");
-      heading.id = id;
-      return {
-        id,
-        text: heading.innerText,
-        level: parseInt(heading.tagName.replace("H", ""), 10),
-      };
-    });
-
-    setHeadings(extractedHeadings);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.find((entry) => entry.isIntersecting);
-        if (visible) setActiveId(visible.target.id);
-      },
-      { rootMargin: "0px 0px -70% 0px", threshold: 1.0 }
+    const elements = Array.from(
+      document.querySelectorAll(
+        ".article-body .tiptap h1, .article-body .tiptap h2, .article-body .tiptap h3",
+      ),
     );
-
-    headingElements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
+    setHeadings(
+      elements.map((element, index) => {
+        element.id = element.id || `article-section-${index + 1}`;
+        return { id: element.id, text: element.textContent };
+      }),
+    );
+  }, [slug]);
+  const url = encodeURIComponent(`https://www.roamifyplanners.in/blog/${slug}`);
+  const socials = [
+    {
+      name: "LinkedIn",
+      Icon: Linkedin,
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+    },
+    {
+      name: "Facebook",
+      Icon: Facebook,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    },
+    {
+      name: "Twitter",
+      Icon: Twitter,
+      href: `https://x.com/intent/post?url=${url}`,
+    },
+  ];
   return (
-    <div className="w-full">
-      <div className="w-full rounded-xl bg-gray-100 p-4 shadow-md">
-        <h3 className="mb-2 text-lg font-semibold">Table of Context</h3>
-        <ul className="space-y-2 text-sm">
-          {headings.map(({ id, text, level }) => (
-            <li
-              key={id}
-              className={`pl-${(level - 1) * 4} ${
-                activeId === id
-                  ? "font-semibold text-blue-600"
-                  : "text-gray-700"
-              }`}
-            >
-              <a href={`#${id}`} className="hover:underline">
-                {text}
+    <div className="site-panel">
+      {headings.length > 0 && (
+        <details>
+          <summary className="font-medium text-base">In this story</summary>
+          <nav
+            aria-label="Article contents"
+            className="flex flex-col gap-3 mt-4"
+          >
+            {headings.map((heading) => (
+              <a
+                className="text-sm text-sub hover:text-primary"
+                key={heading.id}
+                href={`#${heading.id}`}
+              >
+                {heading.text}
               </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="px-4 py-4">
-        <div className="flex items-center gap-3">
+            ))}
+          </nav>
+        </details>
+      )}
+      <p className={`text-xs text-sub ${headings.length ? "mt-6" : ""}`}>
+        A story worth sharing
+      </p>
+      <div className="flex gap-3 mt-3">
+        {socials.map(({ name, Icon, href }) => (
           <a
+            href={href}
+            key={name}
+            aria-label={`Share on ${name}`}
             target="_blank"
-            href={`https://www.linkedin.com/feed/?linkOrigin=LI_BADGE&shareActive=true&shareUrl=https://avtechnosys.com/blog/${slug}`}
+            rel="noopener noreferrer"
+            className="round-arrow"
           >
-            <Linkedin className="duration-200 hover:scale-110" size={30} />
+            <Icon size={16} />
           </a>
-          <a
-            target="_blank"
-            href={`https://www.facebook.com/sharer/sharer.php?u=https://avtechnosys.com/blog/${slug}`}
-          >
-            <Facebook className="duration-200 hover:scale-110" size={30} />
-          </a>
-          <a
-            target="_blank"
-            href={`https://x.com/intent/post?original_referer=https://avtechnosys.com/blog/${slug}&url=https://avtechnosys.com/blog/${slug}`}
-          >
-            <Twitter className="duration-200 hover:scale-110" size={30} />
-          </a>
-        </div>
-        <p className="mt-2">Share this article</p>
+        ))}
       </div>
     </div>
   );
-};
+}

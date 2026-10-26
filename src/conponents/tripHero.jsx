@@ -1,24 +1,35 @@
-function HeroBG({ text, img = null }) {
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
+export default function HeroBG({
+  text,
+  img,
+  eyebrow = "The Roamify way",
+  description,
+}) {
   return (
-    <div className=" w-full h-full relative">
-      <div className=" w-full relative h-full">
-        <div className=" w-full h-full absolute top-0 left-0 bg-black opacity-70 md:opacity-70"></div>
-        <img
-          src={img || "/trip-hero-bg.jpg"}
-          alt="trip-hero-bg"
-          className=" w-full h-full object-cover min-h-[50vh] md:min-h-[60vh]"
-        />
-      </div>
-      <p className=" text-gray-100 tracking-wide leading-12 md:leading-24 text-4xl w-full max-w-6xl md:text-6xl font-medium absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center p-4">
-        {text}
-      </p>
+    <section className="page-hero">
       <img
-        src="/trip-hero-bottom.png"
-        className=" absolute bottom-0 left0"
+        src={img ? img.replace(/^\.\//, "/") : "/trip-hero-bg.jpg"}
         alt=""
+        className="page-hero-image"
+        fetchPriority="high"
       />
-    </div>
+      <div className="page-hero-overlay" />
+      <div className="site-container">
+        <nav aria-label="Breadcrumb" className="breadcrumbs">
+          <Link href="/">Home</Link>
+          <ArrowRight size={12} />
+          <span aria-current="page">{text}</span>
+        </nav>
+        <span className="block text-xs uppercase tracking-[.16em] text-white/70 mt-8">
+          {eyebrow}
+        </span>
+        <h1>{text}</h1>
+        {description && (
+          <p className="mt-5 text-white/80 max-w-xl">{description}</p>
+        )}
+      </div>
+    </section>
   );
 }
-
-export default HeroBG;

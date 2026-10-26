@@ -4,7 +4,7 @@ import { getBlogBySlug } from "lib";
 import TiptapEditor from "@/conponents/Editro";
 
 const Page = async (context) => {
-  const slug = context.params.slug;
+  const { slug } = await context.params;
   const [blogData] = await getBlogBySlug(slug);
   return (
     <div className="mx-auto max-w-7xl px-4 pt-28">

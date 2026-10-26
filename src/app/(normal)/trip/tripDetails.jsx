@@ -1,55 +1,69 @@
-import { Button } from "@/components/ui/button";
 import { HeadingDescription } from "./headingDescription";
 import { TravelPlan } from "./travelPlan";
 import TripContactFrom from "./tripContactForm";
-import Link from "next/link";
 import { GroupTourPrices } from "@/components/groupTourPrices";
+import { ArrowDownToLine } from "lucide-react";
 
 export function TripDetails({ tripData, isGroupTour = false }) {
   return (
-    <div className=" w-full max-w-7xl justify-between px-5 mx-auto flex flex-col md:flex-row gap-12">
-      <div className="flex flex-col gap-6 ">
-        <div className=" flex gap-4 w-full justify-between flex-col md:flex-row">
+    <div className="site-container page-content trip-layout">
+      <article className="trip-content">
+        <div className="trip-price-panel">
           {isGroupTour ? (
             <GroupTourPrices sharingPrices={tripData.sharingPrices} />
-          ) : tripData?.price && (
-            <div className="flex flex-col items-start">
-              <h1 className="text-2xl font-semibold mb-2 text-gray-700">Price</h1>
-              <h2 className="text-3xl font-bold text-primary mb-2">
-                Rs. {tripData?.price}
+          ) : tripData.price ? (
+            <>
+              <p className="text-sm text-sub">Your adventure, starting from</p>
+              <p className="text-4xl font-medium tracking-tight text-primary mt-2">
+                ₹{tripData.price}
+              </p>
+              <p className="text-xs text-sub mt-3">
+                Price is subject to availability and travel dates.
+              </p>
+            </>
+          ) : (
+            <>
+              <span className="site-eyebrow">A trip shaped around you</span>
+              <h2 className="text-2xl font-medium">
+                Let’s plan your adventure.
               </h2>
-
-              <span className="text-xs text-gray-400">
-                Price is subject to change based on availability and dates.
-              </span>
-            </div>
+              <p className="text-sm text-sub mt-2">
+                Get in touch for pricing and availability.
+              </p>
+            </>
           )}
-          {
-            tripData.itinaryURL && (
-              <Link target="_blank" href={tripData.itinaryURL}>
-                <Button className={"rounded-sm"}>View Itinerary</Button>
-              </Link>
-            )
-          }
+          {tripData.itinaryURL && (
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={tripData.itinaryURL}
+              className="site-text-link mt-6"
+            >
+              View full itinerary <ArrowDownToLine size={16} />
+            </a>
+          )}
         </div>
-
-        <HeadingDescription tripDescription={tripData?.description} />
-
-        {tripData?.tripInformation && (
-          <div
-            className="tiptap space-y-2 -mt-3 [&>h2]:mt-8 [&>h1]:mt-8 "
-            dangerouslySetInnerHTML={{ __html: tripData?.tripInformation }}
+        <section>
+          <HeadingDescription tripDescription={tripData.description} />
+        </section>
+        {tripData.tripInformation && (
+          <section
+            className="tiptap"
+            dangerouslySetInnerHTML={{ __html: tripData.tripInformation }}
           />
         )}
-
-        <TravelPlan
-          itinary={{
-            description: tripData?.itinaryDescription,
-            itinary: tripData?.itinary,
-          }}
-        />
-      </div>
-      <TripContactFrom slug={tripData?.slug} isGroupTour={isGroupTour} />
+        {tripData.itinary?.length > 0 && (
+          <section>
+            <TravelPlan
+              itinary={{
+                description: tripData.itinaryDescription,
+                itinary: tripData.itinary,
+              }}
+            />
+          </section>
+        )}
+      </article>
+      <TripContactFrom slug={tripData.slug} isGroupTour={isGroupTour} />
     </div>
   );
 }

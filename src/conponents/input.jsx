@@ -1,25 +1,27 @@
 import { cn } from "@/lib/utils";
 
-function Input({
+export default function Input({
   title,
   placeholder,
   value,
   onChange,
   className,
-  onKeyDown = () => {},
+  onKeyDown,
+  type = "text",
+  ...props
 }) {
   return (
-    <div className={cn("flex w-full flex-col gap-1", className)}>
-      <p className="font-medium">{title}</p>
+    <label className={cn("site-field", className)}>
+      <span>{title}</span>
       <input
+        type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
-        className="rounded-md border bg-white px-2 py-1.5"
+        className="site-input"
+        {...props}
       />
-    </div>
+    </label>
   );
 }
-
-export default Input;

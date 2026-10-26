@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import HeroBG from "@/conponents/tripHero";
 import { getGroupTripBySlug } from "lib/groupTripHelper";
 import { notFound } from "next/navigation";
@@ -10,11 +12,16 @@ export default async function GroupTripPage({ params }) {
   if (!groupTrip) notFound();
 
   return (
-    <div className="text-gray-900 tracking-wide leading-7 w-full space-y-16">
-      <HeroBG text={groupTrip.title} />
+    <div className="trip-page">
+      <HeroBG
+        text={groupTrip.title}
+        img={groupTrip.bannerImage}
+        eyebrow="Good company. Great journeys."
+      />
       <TripDetails tripData={groupTrip} isGroupTour />
-      {groupTrip.hotels?.length > 0 && <HotelSection hotelData={groupTrip.hotels} />}
-      <div className="h-10" />
+      {groupTrip.hotels?.length > 0 && (
+        <HotelSection hotelData={groupTrip.hotels} />
+      )}
     </div>
   );
 }
